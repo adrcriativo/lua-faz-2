@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#FFF7EA">
+<meta name="theme-color" content="#F6BFD3">
 <meta name="description" content="Lua faz 2! Sábado, 26 de dezembro de 2026, às 16h. Confirme sua presença 💖">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lua faz 2! 🌙✨">
@@ -21,394 +21,326 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Caveat+Brush&family=Nunito:wght@600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alfa+Slab+One&family=Anton&family=Archivo+Black&family=Caveat:wght@500;700&family=Courier+Prime:wght@400;700&family=DM+Serif+Display&family=Playfair+Display:ital,wght@1,900&family=Special+Elite&display=swap">
 <style>
-/* Layout: uma página de scrapbook Y2K — papel quadriculado creme, recortes colados com fita,
-   adesivos de lua/estrela com borda branca, faixas de "ric-rac" separando as seções. */
+/* Layout: uma colagem de papel — cada seção é uma folha rasgada colada sobre papel kraft,
+   com recortes de revista e jornal, fita crepe, fotos impressas recortadas a tesoura. */
 :root{
   color-scheme: light;
-  --paper:#FFF7EA;
-  --paper-2:#FFEFF7;
-  --ink:#35245A;
-  --ink-soft:#5E4C86;
-  --pink:#FF4FA3;
-  --pink-soft:#FFC4E1;
-  --lilac:#B49BFF;
-  --lilac-soft:#E7DEFF;
-  --baby:#A8DCFF;
-  --blue:#2E6BFF;
-  --yellow:#FFD83D;
-  --lime:#C9F06B;
-  --orange:#FF9536;
-  --white:#FFFFFF;
-  --grid:rgba(53,36,90,.07);
-  --holo:linear-gradient(115deg,#FFC4E1 0%,#E7DEFF 22%,#BDE8FF 44%,#E8FFC2 64%,#FFE2B8 82%,#FFC4E1 100%);
-  --f-display:"Bagel Fat One","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;
-  --f-hand:"Caveat Brush","Comic Sans MS","Segoe Print",cursive;
-  --f-body:"Nunito",ui-rounded,"Segoe UI",system-ui,-apple-system,sans-serif;
+  --kraft:#B98E60;
+  --ink:#1E1B24;
+  --ink-soft:#4A4253;
+  --red:#D7263D;
+  --pink:#E8336D;
+  --blue:#1F5BD8;
+  --yellow:#FFE45C;
+  --cream:#FBF7EE;
+  --navy:#223068;
+  --f-type:"Courier Prime","Courier New",ui-monospace,monospace;
+  --f-elite:"Special Elite","Courier Prime","Courier New",monospace;
+  --f-hand:"Caveat","Segoe Print","Comic Sans MS",cursive;
+  --f-mag:"Abril Fatface","DM Serif Display",Georgia,serif;
   --gutter-l:max(16px, env(safe-area-inset-left, 0px));
   --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  --torn:url(img/mascara-rasgada.png);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{
-  margin:0;background-color:var(--paper);color:var(--ink);
-  font-family:var(--f-body);font-weight:700;font-size:17px;line-height:1.5;
-  background-image:
-    linear-gradient(var(--grid) 1px,transparent 1px),
-    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:26px 26px;
-  overflow-x:hidden;
-}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+body{margin:0;color:var(--ink);font-family:var(--f-type);font-size:17px;line-height:1.5;
+  background:url(img/grao.png),url(img/kraft.webp) 0 0/600px 600px,var(--kraft)}
 img{max-width:100%;height:auto;display:block}
 [hidden]{display:none !important}
-html{overflow-x:hidden}
-@supports (overflow:clip){html,body{overflow-x:clip}}
 button{font:inherit;color:inherit}
-.wrap{max-width:560px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
-section{position:relative}
+.wrap{position:relative;max-width:560px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+:focus-visible{outline:3px dashed var(--blue);outline-offset:4px}
 
-/* ---------- adesivos SVG ---------- */
-.stk{position:absolute;pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.stk svg{width:100%;height:100%;overflow:visible;display:block}
-.stk .s-out{stroke:var(--white);stroke-width:9;paint-order:stroke;stroke-linejoin:round}
-.float{animation:flutua 5s ease-in-out infinite}
-.float.d2{animation-duration:6.5s;animation-delay:-2s}
-.float.d3{animation-duration:4.2s;animation-delay:-1s}
-.spin{animation:gira 14s linear infinite}
-.twinkle{animation:pisca 2.4s ease-in-out infinite}
-.twinkle.d2{animation-delay:-.8s}.twinkle.d3{animation-delay:-1.6s}
-.swing{transform-origin:50% 0;animation:balanca 4s ease-in-out infinite}
-.boing{animation:boing .6s cubic-bezier(.3,1.6,.5,1) !important}
-@keyframes flutua{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-10px) rotate(calc(var(--r,0deg) + 6deg))}}
-@keyframes gira{to{transform:rotate(360deg)}}
-@keyframes pisca{0%,100%{transform:scale(1) rotate(var(--r,0deg));opacity:1}50%{transform:scale(.7) rotate(calc(var(--r,0deg) + 20deg));opacity:.65}}
-@keyframes balanca{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
-@keyframes boing{0%{transform:scale(1)}40%{transform:scale(1.35) rotate(12deg)}100%{transform:scale(1)}}
+/* ---------- folhas rasgadas (seções) ---------- */
+.sheet{position:relative;overflow:hidden;margin-top:-14px;padding-block:56px 60px;
+  -webkit-mask-box-image:var(--torn) 22 / 14px 0 round;}
+.sheet.p-rosa{background:url(img/grao.png),url(img/papel-rosa.webp) center/cover,#F6BFD3}
+.sheet.p-azul{background:url(img/grao.png),url(img/papel-azul.webp) center/cover,#B9DCF4}
+.sheet.p-amarelo{background:url(img/grao.png),url(img/papel-amarelo.webp) center/cover,#FBE39A}
+.sheet.p-lilas{background:url(img/grao.png),url(img/papel-lilas.webp) center/cover,#D7C6F3}
+.sheet.p-menta{background:url(img/grao.png),url(img/papel-menta.webp) center/cover,#C7EED6}
+.sheet.p-pessego{background:url(img/grao.png),url(img/papel-pessego.webp) center/cover,#F9CDB0}
+.sheet.p-jornal{background:url(img/grao.png),url(img/jornal.webp) center/900px auto,#EEE6D2}
 
-/* ---------- fita adesiva (washi) ---------- */
-.tape{position:absolute;height:28px;width:110px;
-  background:repeating-linear-gradient(45deg,rgba(255,255,255,.55) 0 6px,transparent 6px 12px),var(--c,var(--lime));
-  opacity:.92;box-shadow:0 1px 2px rgba(53,36,90,.15);
-  clip-path:polygon(3% 0,97% 4%,100% 50%,96% 100%,2% 96%,0 50%);z-index:3}
+/* recorte rasgado genérico + sombra (a sombra fica no pai porque a máscara corta o filtro) */
+.sh{filter:drop-shadow(0 3px 2px rgba(30,20,10,.18)) drop-shadow(0 10px 12px rgba(30,20,10,.18))}
+.scrap{position:relative;-webkit-mask-box-image:var(--torn) 22 / 10px round}
+.cut{-webkit-mask-box-image:url(img/mascara-tesoura.png) 14 / 6px round}
 
-/* ---------- títulos ---------- */
-.hand{font-family:var(--f-hand);font-weight:400}
-.sec-title{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,8.6vw,44px);line-height:1.02;
-  margin:0 0 6px;text-align:center;color:var(--ink);text-wrap:balance;letter-spacing:.5px}
-.sec-title .hl{background:var(--yellow);padding:0 .18em;border-radius:.2em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.sec-kicker{font-family:var(--f-hand);font-size:26px;text-align:center;color:var(--pink);margin:0;transform:rotate(-2deg)}
+/* ---------- fitas ---------- */
+.tape{position:absolute;z-index:5;width:110px;height:30px;background:url(img/fita-crepe.png) center/100% 100% no-repeat;pointer-events:none}
+.tape.rosa{background-image:url(img/fita-rosa.png)}
+.tape.azul{background-image:url(img/fita-azul.png)}
+.tape.verde{background-image:url(img/fita-verde.png)}
+.tape.amarela{background-image:url(img/fita-amarela.png)}
 
-/* ---------- ric-rac (divisória) ---------- */
-.ricrac{height:22px;margin:0;border:0;
-  background-repeat:repeat-x;background-position:center;background-size:40px 22px;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 22'%3E%3Cpath d='M0 11 Q10 -3 20 11 T40 11' fill='none' stroke='%23FF4FA3' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")}
-.ricrac.lilac{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 22'%3E%3Cpath d='M0 11 Q10 -3 20 11 T40 11' fill='none' stroke='%23B49BFF' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")}
-.ricrac.blue{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 22'%3E%3Cpath d='M0 11 Q10 -3 20 11 T40 11' fill='none' stroke='%232E6BFF' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")}
-.ricrac.lime{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 22'%3E%3Cpath d='M0 11 Q10 -3 20 11 T40 11' fill='none' stroke='%23A8D43B' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")}
+/* ---------- letras recortadas de revista (montadas por JS) ---------- */
+.ransom{margin:0;font-weight:400;line-height:1.15;text-align:center;text-wrap:balance;
+  filter:drop-shadow(1px 2px 0 rgba(30,20,10,.28)) drop-shadow(0 4px 6px rgba(30,20,10,.18))}
+.ransom .w{display:inline-block;white-space:nowrap;margin:0 .14em}
+.ransom .l{display:inline-block;padding:.06em .13em .1em;margin:0 .015em;line-height:1;vertical-align:middle}
+.ransom.s1{font-size:clamp(30px,8.4vw,44px)}
+h2.ransom,h3.ransom{position:relative;z-index:8}
+.ransom.s2{font-size:clamp(26px,7.2vw,38px)}
 
-/* ---------- botões ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:58px;padding:14px 28px;
-  border:3px solid var(--ink);border-radius:999px;background:var(--pink);color:var(--white);
-  font-family:var(--f-display);font-weight:400;font-size:20px;letter-spacing:.6px;text-decoration:none;cursor:pointer;
-  box-shadow:4px 5px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease;-webkit-tap-highlight-color:transparent;
-  text-shadow:0 2px 0 rgba(53,36,90,.35)}
-.btn:active{transform:translate(3px,4px);box-shadow:1px 1px 0 var(--ink)}
-.btn.blue{background:var(--blue)}
-.btn.big{font-size:clamp(17px,5.3vw,25px);min-height:70px;padding:16px 16px;width:100%;white-space:nowrap;
-  background:var(--pink) var(--holo);background-blend-mode:multiply;background-size:200% 100%;animation:holo 5s linear infinite}
+/* ---------- etiqueta Dymo ---------- */
+.dymo{display:inline-flex;align-items:center;justify-content:center;gap:.4em;border:0;cursor:pointer;text-decoration:none;
+  background:var(--red) linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 38%,rgba(0,0,0,.14));
+  color:#fff;font-family:var(--f-type);font-weight:700;text-transform:uppercase;letter-spacing:.16em;
+  padding:.62em 1.1em;border-radius:4px;transform:rotate(-1.2deg);
+  text-shadow:0 1px 0 rgba(0,0,0,.35),0 -1px 0 rgba(255,255,255,.4);
+  box-shadow:0 2px 0 rgba(0,0,0,.22),0 8px 12px -6px rgba(0,0,0,.45);
+  transition:transform .12s ease}
+.dymo:active{transform:rotate(-1.2deg) translateY(2px) scale(.98)}
+.dymo.preta{background-color:#17171c}
+.dymo.azul{background-color:var(--blue)}
+.dymo.big{font-size:clamp(17px,5vw,21px);min-height:64px;width:100%;padding:.8em .8em}
 
-/* =========================================================
-   HERO
-   ========================================================= */
-.hero{padding-top:28px;padding-bottom:30px;overflow:hidden}
-.hero .wrap{position:relative;text-align:center}
-.badge-top{display:inline-block;font-family:var(--f-hand);font-size:22px;background:var(--white);border:2.5px dashed var(--lilac);
-  padding:4px 16px;border-radius:999px;transform:rotate(-3deg);color:var(--ink-soft)}
-.title{margin:10px 0 0;font-family:var(--f-display);font-weight:400;line-height:.86;position:relative;z-index:2}
-.title .lua{display:block;font-size:clamp(96px,33vw,168px);color:var(--pink);
-  -webkit-text-stroke:4px var(--ink);paint-order:stroke fill;text-shadow:6px 7px 0 var(--baby);letter-spacing:2px}
-.title .faz{display:inline-flex;align-items:center;gap:.12em;font-size:clamp(46px,15vw,78px);color:var(--yellow);
-  -webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:4px 5px 0 var(--lilac);margin-top:4px}
-.title .dois{position:relative;display:inline-grid;place-items:center;width:1.55em;height:1.55em;margin-left:.05em}
-.title .dois svg{position:absolute;inset:0;width:100%;height:100%;animation:gira 18s linear infinite}
-.title .dois b{position:relative;font-weight:400;color:var(--white);font-size:1.05em;-webkit-text-stroke:3px var(--ink);text-shadow:none;transform:translateY(.04em)}
-.lead{font-size:19px;font-weight:800;max-width:24ch;margin:16px auto 0;text-wrap:balance;color:var(--ink)}
-.date-pill{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px;margin-top:16px;
-  background:var(--ink);color:var(--white);border-radius:18px;padding:10px 18px;font-weight:900;font-size:16px;letter-spacing:1.2px;
-  box-shadow:4px 4px 0 var(--pink)}
-@media (max-width:430px){.date-pill{font-size:14.5px;letter-spacing:.6px;padding:10px 14px}}
-.date-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--yellow)}
+/* ---------- textos ---------- */
+.typed{font-family:var(--f-type);font-size:17px}
+.hand{font-family:var(--f-hand);font-weight:700}
+.kicker{display:block;width:fit-content;margin:0 auto 14px;position:relative;font-family:var(--f-elite);font-size:16px;
+  padding:7px 18px 6px;background:url(img/fita-crepe.png) center/100% 100% no-repeat;transform:rotate(-2deg);color:var(--ink)}
 
-.polaroid-zone{position:relative;margin:30px auto 0;width:min(80vw,330px)}
-.hero-stk{position:relative;cursor:pointer;padding-top:6px}
-.burst{position:absolute;left:50%;top:2%;width:122%;aspect-ratio:1;transform:translateX(-50%);z-index:0;pointer-events:none}
-.burst svg{width:100%;height:100%;display:block;animation:gira 50s linear infinite}
-.hero-stk .fig{position:relative;z-index:1;width:80%;margin:0 auto;filter:drop-shadow(0 12px 14px rgba(53,36,90,.35));animation:respira 4.5s ease-in-out infinite;transform-origin:50% 100%}
-@keyframes respira{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(1.5deg) translateY(-5px)}}
-.name-tag{position:absolute;z-index:2;bottom:3%;left:50%;transform:translateX(-50%) rotate(-4deg);background:var(--yellow);border:3px solid var(--ink);border-radius:999px;
-  padding:2px 20px 4px;font-family:var(--f-hand);font-size:28px;line-height:1.2;box-shadow:3px 4px 0 var(--ink);white-space:nowrap;color:var(--ink)}
-.sheet{position:relative;justify-self:center;margin:6px 0 0;width:min(100%,380px);border-radius:28px;padding:24px 8px 16px;
-  background:var(--holo);border:3px solid var(--ink);box-shadow:6px 7px 0 var(--blue);
-  display:grid;grid-template-columns:.86fr 1fr;align-items:end}
-.sheet img{width:100%;filter:drop-shadow(0 8px 10px rgba(53,36,90,.3))}
-.sheet .f2{transform:rotate(-6deg) translateX(6%);z-index:1}
-.sheet .f3{transform:rotate(4deg);margin-left:-6%}
-.sheet figcaption{grid-column:1/-1;text-align:center;font-family:var(--f-hand);font-size:26px;color:var(--ink);margin-top:8px}
-.sheet .tape{top:-14px;left:28px;transform:rotate(-6deg);--c:var(--yellow);width:96px}
-.scroll-hint{margin-top:26px;font-family:var(--f-hand);font-size:22px;color:var(--ink-soft);display:flex;flex-direction:column;align-items:center;gap:2px}
-.scroll-hint span{display:inline-block;animation:desce 1.6s ease-in-out infinite;font-size:26px}
-@keyframes desce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+/* ---------- adesivos e recortes soltos ---------- */
+.stk{position:absolute;z-index:4;pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  filter:drop-shadow(0 4px 4px rgba(30,20,10,.25))}
+.stk img{width:100%}
+.sway{animation:sway 6s ease-in-out infinite;transform-origin:50% 10%}
+.sway.d2{animation-duration:7.5s;animation-delay:-2s}
+.bob{animation:bob 5s ease-in-out infinite}
+.bob.d2{animation-delay:-2.2s}
+.spin{animation:spin 30s linear infinite}
+@keyframes sway{0%,100%{transform:rotate(calc(var(--r,0deg) - 3deg))}50%{transform:rotate(calc(var(--r,0deg) + 3deg))}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-6px) rotate(var(--r,0deg))}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.boing{animation:boing .55s cubic-bezier(.3,1.6,.5,1) !important}
+@keyframes boing{40%{transform:scale(1.18) rotate(8deg)}}
 
 /* entrada */
-.enter{animation:entra .8s cubic-bezier(.2,1.3,.4,1) both;animation-delay:var(--dl,0s)}
-@keyframes entra{from{opacity:0;transform:translateY(18px) scale(.92)}to{opacity:1;transform:none}}
-.pop{animation:popin .6s cubic-bezier(.3,1.6,.5,1) both;animation-delay:var(--dl,.4s)}
-@keyframes popin{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+.drop{animation:drop .7s cubic-bezier(.2,1.3,.4,1) both;animation-delay:var(--dl,0s)}
+@keyframes drop{from{opacity:0;transform:translateY(-18px) rotate(var(--r0,-6deg)) scale(1.06)}to{opacity:1}}
 
-/* ---------- bilhete ---------- */
-.note-sec{padding:16px 0 36px}
-.note{position:relative;background:var(--white);border-radius:6px;padding:30px 24px 24px;transform:rotate(1.2deg);
-  background-image:linear-gradient(transparent 33px,rgba(46,107,255,.18) 34px);background-size:100% 34px;background-position:0 16px;
-  box-shadow:0 12px 26px -12px rgba(53,36,90,.35);border-left:4px solid rgba(255,79,163,.35)}
-.note .tape{top:-12px;right:22px;transform:rotate(6deg);--c:var(--baby);width:90px}
-.note p{margin:0;font-size:19px;line-height:34px;font-weight:800}
-.note .sig{font-family:var(--f-hand);font-size:28px;color:var(--pink);font-weight:400;margin-top:6px;text-align:right}
+/* =========================================================
+   CAPA
+   ========================================================= */
+.hero{margin-top:0;padding-top:26px;padding-bottom:64px;-webkit-mask-box-image:var(--torn) 22 / 0 0 14px round}
+.hero .wrap{text-align:center}
+.hero .kicker{font-size:15px}
+.title{margin:6px 0 0;line-height:1}
+.title .t1{display:block;font-size:clamp(84px,27vw,132px)}
+.title .t2{display:block;font-size:clamp(48px,15vw,74px);margin-top:4px}
+.lead-strip{display:block;width:fit-content;max-width:100%;margin:18px auto 0;transform:rotate(1.2deg)}
+.lead-strip .scrap,.rsvp-intro .scrap,.foot .msg .scrap{display:block}
+.lead-strip .scrap{background:url(img/grao.png),var(--cream);padding:12px 22px 13px;font-size:17px;font-weight:700;text-wrap:balance}
+.ticket{display:inline-flex;margin:18px auto 0;transform:rotate(-2deg)}
+.ticket > div{display:flex;align-items:center;gap:12px;background:url(img/grao.png),#FFF3D6;padding:10px 26px;
+  -webkit-mask:radial-gradient(circle 9px at 0 50%,transparent 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 50%,transparent 97%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle 9px at 0 50%,transparent 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 50%,transparent 97%,#000) right/51% 100% no-repeat}
+.ticket .num{font-family:var(--f-elite);font-size:12px;color:var(--red);writing-mode:vertical-rl;transform:rotate(180deg);border-right:2px dashed rgba(215,38,61,.5);padding-left:10px;letter-spacing:.1em}
+.ticket .when{font-family:var(--f-type);font-weight:700;color:var(--red);font-size:15.5px;letter-spacing:.06em;line-height:1.3;text-align:left}
+.ticket .when b{display:block;font-size:clamp(14px,4.2vw,18px);letter-spacing:.02em;color:var(--ink);white-space:nowrap}
+
+.collage{position:relative;margin:26px auto 0;width:min(100%,400px);aspect-ratio:4/5}
+.collage .bgnews{position:absolute;left:8%;top:6%;width:78%;height:82%;transform:rotate(-5deg)}
+.collage .bgnews .scrap{width:100%;height:100%;background:url(img/jornal.webp) 30% 18%/560px auto,#EEE6D2}
+.collage .bgpink{position:absolute;right:2%;top:14%;width:56%;height:56%;transform:rotate(7deg)}
+.collage .bgpink .scrap{width:100%;height:100%;background:url(img/grao.png),url(img/papel-amarelo.webp) center/cover}
+.collage .foto{position:absolute;left:50%;bottom:0;width:66%;transform:translateX(-50%) rotate(-2deg);z-index:3;cursor:pointer;
+  filter:drop-shadow(0 4px 3px rgba(30,20,10,.22)) drop-shadow(0 14px 16px rgba(30,20,10,.25))}
+.collage .foto .tape{top:2%;left:50%;transform:translateX(-50%) rotate(-6deg);width:96px}
+.scroll-hint{margin-top:20px;font-family:var(--f-hand);font-weight:700;font-size:24px;color:var(--ink-soft)}
+.scroll-hint span{display:inline-block;animation:bob 1.8s ease-in-out infinite}
+
+/* ---------- bilhete de caderno ---------- */
+.note-wrap{position:relative;margin:0 auto;max-width:460px;transform:rotate(-1.5deg)}
+.note{padding:30px 22px 22px 46px;
+  background:
+    radial-gradient(circle 7px at 18px 34px,rgba(0,0,0,.28) 60%,transparent 62%) 0 0/100% 64px repeat-y,
+    linear-gradient(90deg,transparent 34px,rgba(215,38,61,.55) 34px 36px,transparent 36px),
+    linear-gradient(transparent 31px,rgba(31,91,216,.28) 31px 32px) 0 14px/100% 32px,
+    url(img/grao.png),#FFFDF6}
+.note p{margin:0;font-family:var(--f-hand);font-weight:500;font-size:25px;line-height:32px;color:#24305E}
+.note .sig{text-align:right;color:var(--pink);font-weight:700}
+.note-wrap .tape{top:-12px;right:24px;transform:rotate(8deg)}
 
 /* =========================================================
    CONTAGEM
    ========================================================= */
-.count-sec{padding:34px 0 40px;background:var(--paper-2)}
-.count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:20px}
-.cd{position:relative;border:3px solid var(--ink);border-radius:18px;padding:12px 4px 10px;text-align:center;box-shadow:3px 4px 0 var(--ink);
-  background:var(--bgc)}
-.cd:nth-child(1){--bgc:var(--pink);transform:rotate(-3deg)}
-.cd:nth-child(2){--bgc:var(--baby);transform:rotate(2deg)}
-.cd:nth-child(3){--bgc:var(--yellow);transform:rotate(-1.5deg)}
-.cd:nth-child(4){--bgc:var(--lime);transform:rotate(3deg)}
-.cd .n{display:block;font-family:var(--f-display);font-size:clamp(30px,10vw,48px);line-height:1;color:var(--white);
-  -webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;font-variant-numeric:tabular-nums}
-.cd .l{display:block;margin-top:6px;font-size:12px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink)}
-.cd::before{content:"";position:absolute;top:6px;left:8px;width:16px;height:6px;border-radius:6px;background:rgba(255,255,255,.7);transform:rotate(-20deg)}
-.cd.tick .n{animation:tic .35s ease}
-@keyframes tic{50%{transform:scale(1.12)}}
-.count-foot{text-align:center;margin:20px 0 0;font-family:var(--f-hand);font-size:24px;color:var(--ink-soft)}
-.today{display:none;text-align:center;font-family:var(--f-display);font-size:34px;margin-top:20px}
+.count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:24px}
+.cd{text-align:center}
+.cd .scrap{padding:14px 2px 10px;min-height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.cd:nth-child(1) .scrap{background:url(img/grao.png),url(img/jornal.webp) 60% 40%/700px auto}
+.cd:nth-child(2) .scrap{background:url(img/grao.png),url(img/papel-rosa.webp) center/cover}
+.cd:nth-child(3) .scrap{background:url(img/grao.png),url(img/kraft.webp) center/300px}
+.cd:nth-child(4) .scrap{background:url(img/grao.png),var(--cream)}
+.cd:nth-child(1){transform:rotate(-3deg)}.cd:nth-child(2){transform:rotate(2deg) translateY(6px)}
+.cd:nth-child(3){transform:rotate(-1.5deg)}.cd:nth-child(4){transform:rotate(3deg) translateY(4px)}
+.cd .rnum{font-size:clamp(24px,7.6vw,36px);filter:drop-shadow(1px 1px 0 rgba(0,0,0,.25))}
+.cd .lbl{font-family:var(--f-elite);font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:#17171c;color:#fff;padding:2px 7px;border-radius:2px}
+.count-foot{text-align:center;margin:26px 0 0}
+.count-foot span{display:inline-block;background:url(img/grao.png),var(--cream);padding:6px 14px;font-weight:700;transform:rotate(-1deg)}
+.today{display:none;text-align:center;margin-top:24px}
 
 /* =========================================================
    FICHA
    ========================================================= */
-.info-sec{padding:40px 0 44px}
-.info-grid{display:grid;gap:26px;margin-top:22px}
-.ficha{position:relative;background:var(--white);border:3px solid var(--ink);border-radius:20px;padding:22px 20px 18px;
-  box-shadow:6px 6px 0 var(--lilac);transform:rotate(-1deg)}
-.ficha h3{margin:0 0 10px;font-family:var(--f-hand);font-weight:400;font-size:28px;color:var(--blue);transform:rotate(-2deg)}
+.info-grid{display:grid;gap:30px;margin-top:22px}
+.ficha-wrap{position:relative;transform:rotate(-1.2deg)}
+.ficha{padding:18px 18px 14px;background:
+  linear-gradient(transparent 44px,rgba(215,38,61,.6) 44px 46px,transparent 46px),
+  linear-gradient(transparent 33px,rgba(31,91,216,.22) 33px 34px) 0 46px/100% 34px,
+  url(img/grao.png),#FFFCF2}
+.ficha h3{margin:0 0 14px;font-family:var(--f-elite);font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase}
 .ficha ul{list-style:none;margin:0;padding:0}
-.ficha li{display:flex;gap:12px;align-items:baseline;padding:10px 0;border-bottom:2px dotted rgba(53,36,90,.2);font-size:18px;font-weight:800}
-.ficha li:last-child{border-bottom:0}
-.ficha li .e{flex:0 0 auto;width:28px;text-align:center;font-size:20px}
+.ficha li{display:flex;gap:10px;align-items:baseline;min-height:34px;font-size:17px;font-weight:700;line-height:1.3;padding:3px 0}
+.ficha li .e{flex:0 0 26px;text-align:center}
 .ficha li span{min-width:0}
-.ficha .tape{top:-14px;left:24px;transform:rotate(-5deg);--c:var(--yellow);width:96px}
-
+.ficha-wrap .tape{top:-13px;left:22px;transform:rotate(-5deg)}
+.fotos2{position:relative;height:clamp(330px,96vw,440px);margin:0 auto;width:min(100%,420px)}
+.fotos2 .f{position:absolute;width:52%;filter:drop-shadow(0 4px 3px rgba(30,20,10,.22)) drop-shadow(0 12px 14px rgba(30,20,10,.22))}
+.fotos2 .f2{left:0;top:4%;transform:rotate(-6deg)}
+.fotos2 .f3{right:0;top:12%;transform:rotate(5deg);width:56%}
+.fotos2 .tape{top:0;left:30%;transform:rotate(-8deg);width:84px}
+.fotos2 .f3 .tape{left:34%;transform:rotate(6deg)}
 
 /* =========================================================
    LOCAL (cartão-postal)
    ========================================================= */
-.loc-sec{padding:40px 0 44px;background:var(--lilac-soft)}
-.postal{position:relative;margin-top:24px;background:var(--paper);border-radius:10px;padding:22px 20px 22px;
-  box-shadow:0 14px 28px -14px rgba(53,36,90,.45);border:3px solid var(--ink);
-  background-image:repeating-linear-gradient(135deg,var(--pink) 0 10px,var(--white) 10px 20px,var(--blue) 20px 30px,var(--white) 30px 40px);
-  background-clip:border-box}
-.postal-in{background:var(--paper);border-radius:4px;padding:20px 18px;margin:-8px;position:relative}
-.stamp{position:absolute;top:12px;right:12px;width:76px;height:90px;background:var(--yellow);padding:6px;transform:rotate(4deg);
-  -webkit-mask:radial-gradient(circle 4px at 4px 4px,transparent 98%,#000) -4px -4px/10px 10px;
-          mask:radial-gradient(circle 4px at 4px 4px,transparent 98%,#000) -4px -4px/10px 10px}
-.stamp-in{width:100%;height:100%;border:2px solid var(--ink);display:grid;place-items:center;background:var(--baby)}
-.stamp-in svg{width:52px;height:52px}
-.postmark{position:absolute;top:2px;right:60px;width:70px;height:70px;border-radius:50%;border:2.5px solid rgba(46,107,255,.55);
-  color:rgba(46,107,255,.7);display:grid;place-items:center;text-align:center;font-size:8.5px;font-weight:900;letter-spacing:.8px;line-height:1.25;
-  transform:rotate(-14deg);pointer-events:none}
-.postal .addr{padding-right:96px}
-.postal .lbl{font-size:12px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--pink);margin:0}
-.postal .street{font-family:var(--f-display);font-weight:400;font-size:clamp(24px,7vw,30px);line-height:1.08;margin:4px 0 6px;color:var(--ink);text-wrap:balance}
-.postal .ref{margin:0;font-size:17px;font-weight:800;color:var(--ink-soft)}
-.postal .when{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.chip{display:inline-flex;align-items:center;gap:6px;border:2.5px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:900;background:var(--white);font-size:16px}
-.loc-actions{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:22px}
-.loc-actions .btn{width:100%}
-.link-soft{font-weight:900;color:var(--blue);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;font-size:16px}
+.postal-wrap{position:relative;margin-top:26px;transform:rotate(-1deg)}
+.postal{position:relative;padding:22px 18px 22px;border:11px solid transparent;
+  border-image:repeating-linear-gradient(-45deg,#D7263D 0 12px,#FFFDF6 12px 24px,#1F5BD8 24px 36px,#FFFDF6 36px 48px) 11;
+  background:url(img/grao.png),#FFFDF6;background-clip:padding-box}
+.selo{position:absolute;top:-6px;right:-4px;width:96px;transform:rotate(6deg);z-index:3;filter:drop-shadow(0 3px 3px rgba(0,0,0,.25))}
+.carimbo{position:absolute;top:66px;right:46px;width:72px;height:72px;border-radius:50%;border:2.5px solid rgba(31,91,216,.55);
+  color:rgba(31,91,216,.7);display:grid;place-items:center;text-align:center;font-family:var(--f-elite);font-size:10px;line-height:1.25;
+  transform:rotate(-16deg);pointer-events:none;z-index:4}
+.postal .addr{min-height:110px}
+.postal .lbl,.postal .street{padding-right:100px}
+.postal .lbl{font-family:var(--f-elite);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin:0}
+.postal .street{font-family:var(--f-mag);font-size:clamp(25px,7.2vw,31px);line-height:1.08;margin:6px 0 8px}
+.postal .ref{margin:0;font-weight:700;color:var(--ink-soft)}
+.postal .lines{margin-top:16px;display:grid;gap:4px}
+.postal .lines p{margin:0;border-bottom:1.5px solid rgba(30,27,36,.35);font-family:var(--f-hand);font-weight:700;font-size:24px;line-height:1.35;color:#24305E}
+.loc-actions{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:28px}
+.link-soft{font-family:var(--f-hand);font-weight:700;font-size:23px;color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 
 /* =========================================================
-   PRESENTES
+   PRESENTES (envelope kraft)
    ========================================================= */
-.gift-sec{padding:44px 0 46px;overflow:hidden}
-.giftbox{display:block;width:100%;margin:84px auto 0;max-width:420px;background:none;border:0;padding:0;cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent}
-.gb-lid{position:relative;height:54px;margin:0 -10px;background:var(--pink);border:3px solid var(--ink);border-radius:12px;z-index:2;
-  transition:transform .6s cubic-bezier(.3,1.5,.5,1);transform-origin:10% 100%}
-.gb-lid::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:36px;transform:translateX(-50%);background:var(--yellow);border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
-.gb-bow{position:absolute;left:50%;top:-50px;width:110px;height:60px;transform:translateX(-50%)}
-.gb-body{position:relative;margin-top:-3px;background:var(--pink) ;border:3px solid var(--ink);border-radius:0 0 14px 14px;padding:28px 18px 26px;
-  background-image:radial-gradient(circle,rgba(255,255,255,.55) 3px,transparent 4px);background-size:26px 26px}
-.gb-body::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:36px;transform:translateX(-50%);background:var(--yellow);border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
-.gb-label{position:relative;z-index:1;display:inline-block;background:var(--white);border:3px solid var(--ink);border-radius:14px;padding:12px 18px;transform:rotate(-2deg);box-shadow:3px 4px 0 var(--ink)}
-.gb-label strong{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(20px,6vw,25px);line-height:1.1;color:var(--ink)}
-.gb-label em{display:block;font-style:normal;font-family:var(--f-hand);font-size:22px;color:var(--pink);margin-top:2px}
-.giftbox:active .gb-label{transform:rotate(-2deg) scale(.97)}
-.giftbox[aria-expanded="true"] .gb-lid{transform:translate(4px,-14px) rotate(-6deg)}
-.giftbox[aria-expanded="false"] .gb-lid{animation:chacoalha 3.2s ease-in-out infinite}
-@keyframes chacoalha{0%,82%,100%{transform:none}86%{transform:rotate(-3deg)}90%{transform:rotate(3deg)}94%{transform:rotate(-2deg)}}
-
+.env{position:relative;display:block;width:100%;max-width:400px;margin:56px auto 0;padding:0;border:0;background:none;cursor:pointer;
+  perspective:900px;-webkit-tap-highlight-color:transparent}
+.env-body{display:block;position:relative;height:210px;background:url(img/grao.png),url(img/kraft.webp) center/300px,#C49A6C;
+  box-shadow:0 12px 18px -10px rgba(30,20,10,.55);border-radius:3px}
+.env-body::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(to top right,transparent 49.6%,rgba(80,50,20,.25) 50%,transparent 50.6%),
+  linear-gradient(to top left,transparent 49.6%,rgba(80,50,20,.25) 50%,transparent 50.6%)}
+.env-flap{position:absolute;left:0;right:0;top:0;height:120px;z-index:3;transform-origin:50% 0;transition:transform .7s cubic-bezier(.4,1.4,.5,1);
+  background:url(img/grao.png),url(img/kraft.webp) 40% 60%/300px,#B88D5F;filter:brightness(.93);
+  clip-path:polygon(0 0,100% 0,50% 100%)}
+.env[aria-expanded="true"] .env-flap{transform:rotateX(180deg)}
+.env[aria-expanded="false"] .env-body{animation:balanca 3.4s ease-in-out infinite}
+@keyframes balanca{0%,80%,100%{transform:none}85%{transform:rotate(-1.5deg)}90%{transform:rotate(1.5deg)}95%{transform:rotate(-1deg)}}
+.env-tag{position:absolute;z-index:4;left:50%;top:96px;transform:translateX(-50%) rotate(-3deg);width:min(86%,300px);
+  background:url(img/grao.png),var(--cream);padding:14px 14px 12px 34px;text-align:left;box-shadow:0 4px 8px rgba(0,0,0,.25);
+  clip-path:polygon(16px 0,100% 0,100% 100%,16px 100%,0 50%)}
+.env-tag::before{content:"";position:absolute;left:14px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:#C49A6C;box-shadow:inset 0 0 0 2px rgba(0,0,0,.2)}
+.env-tag strong{display:block;font-family:var(--f-type);font-weight:700;font-size:17px;letter-spacing:.06em}
+.env-tag em{display:block;font-style:normal;font-family:var(--f-hand);font-weight:700;font-size:22px;color:var(--pink)}
+.env-seal{position:absolute;z-index:5;left:50%;top:92px;width:48px;transform:translateX(-50%);display:none}
 .gifts-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s ease}
 .gifts-wrap.open{grid-template-rows:1fr}
 .gifts-wrap > div{min-height:0;overflow:hidden}
-.gifts{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:22px 4px 8px}
-.gift{background:var(--white);border:3px solid var(--ink);border-radius:18px;padding:14px 10px 14px;text-align:center;box-shadow:3px 4px 0 var(--c);
-  opacity:0;transform:translateY(30px) scale(.8) rotate(var(--r));transition:opacity .4s ease,transform .55s cubic-bezier(.3,1.6,.5,1);transition-delay:var(--dl)}
+.gifts{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:22px 4px 10px}
+.gift{opacity:0;transform:translateY(-40px) rotate(var(--r)) scale(.85);transition:opacity .4s ease,transform .6s cubic-bezier(.3,1.5,.5,1);transition-delay:var(--dl)}
 .gifts-wrap.open .gift{opacity:1;transform:rotate(var(--r))}
-.gift svg{width:84px;height:84px;margin:0 auto 6px;display:block}
-.gift h4{margin:0;font-family:var(--f-display);font-weight:400;font-size:17px;line-height:1.1;letter-spacing:.4px;color:var(--ink)}
-.gift p{margin:4px 0 0;font-size:15px;font-weight:800;color:var(--ink-soft)}
-.gift .size{display:inline-block;margin-top:6px;background:var(--yellow);border-radius:999px;padding:2px 10px;font-weight:900;font-size:14px;color:var(--ink)}
+.gift .scrap{padding:12px 8px 14px;text-align:center}
+.gift:nth-child(1) .scrap{background:url(img/grao.png),var(--cream)}
+.gift:nth-child(2) .scrap{background:url(img/grao.png),url(img/jornal.webp) 20% 70%/700px auto}
+.gift:nth-child(3) .scrap{background:url(img/grao.png),url(img/papel-azul.webp) center/cover}
+.gift:nth-child(4) .scrap{background:url(img/grao.png),url(img/papel-rosa.webp) center/cover}
+.gift img{width:min(100%,128px);margin:0 auto 6px}
+.gift h4{display:inline-block;background:#FFFDF6;padding:3px 8px;margin:0;font-family:var(--f-mag);font-weight:400;font-size:19px;line-height:1.1;letter-spacing:.02em}
+.gift .dymo{font-size:12px;letter-spacing:.06em;white-space:nowrap;margin-top:8px;padding:.35em .6em}
 
 /* =========================================================
-   RSVP
+   CONFIRMAÇÃO
    ========================================================= */
-.rsvp-sec{padding:46px 0 52px;background:var(--paper-2)}
-.rsvp-sec .sec-title{font-size:clamp(28px,8vw,40px)}
-.rsvp-intro{text-align:center;margin:10px auto 24px;max-width:30ch;font-size:18px;color:var(--ink-soft)}
+.rsvp-intro{display:block;width:fit-content;max-width:100%;margin:14px auto 22px;transform:rotate(.8deg)}
+.rsvp-intro .scrap{background:url(img/grao.png),var(--cream);padding:10px 18px;text-align:center;font-weight:700;text-wrap:balance}
+.already{display:none;width:fit-content;margin:0 auto 16px}
+.already.show{display:block}
 .form-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s ease}
 .form-wrap.open{grid-template-rows:1fr}
-.form-wrap > div{min-height:0;overflow:hidden;padding:0 6px}
-.slam{position:relative;margin:26px 0 10px;background:var(--white);border:3px solid var(--ink);border-radius:22px;padding:24px 18px 22px;box-shadow:6px 7px 0 var(--blue)}
-.slam .tape{top:-14px;left:50%;transform:translateX(-50%) rotate(-3deg);--c:var(--lime)}
-.field{display:grid;gap:8px;margin-bottom:20px}
-.field > label,.field > .flabel{font-weight:900;font-size:17px;color:var(--ink)}
-.field .opt{font-weight:700;color:var(--ink-soft);font-size:15px}
-.inp{width:100%;font:inherit;font-weight:700;font-size:17px;color:var(--ink);background:var(--paper);border:2.5px solid var(--ink);border-radius:14px;padding:13px 14px;min-height:52px;-webkit-appearance:none;appearance:none}
-textarea.inp{min-height:92px;resize:vertical;line-height:1.4}
-.inp::placeholder{color:rgba(53,36,90,.45)}
-.inp:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(46,107,255,.2);background:var(--white)}
-.choice{display:grid;gap:10px}
+.form-wrap > div{min-height:0;overflow:hidden;padding:0 4px}
+.form-paper{position:relative;margin:26px 0 12px;transform:rotate(-.6deg)}
+.form-paper .tape{top:-12px;left:50%;transform:translateX(-50%) rotate(-3deg);width:120px}
+form.note{padding:30px 18px 22px 46px}
+.field{display:grid;gap:4px;margin-bottom:20px}
+.field > label,.field > .flabel{font-family:var(--f-type);font-weight:700;font-size:16px;color:var(--ink)}
+.field .opt{font-weight:400;color:var(--ink-soft)}
+.inp{width:100%;font-family:var(--f-hand);font-weight:700;font-size:25px;color:#24305E;background:transparent;border:0;
+  border-bottom:2px dashed rgba(30,27,36,.45);padding:4px 2px;min-height:46px;border-radius:0;-webkit-appearance:none;appearance:none}
+textarea.inp{min-height:96px;resize:vertical;line-height:32px;border:2px dashed rgba(30,27,36,.35);border-radius:6px;padding:4px 10px;background:rgba(255,255,255,.4)}
+.inp::placeholder{color:rgba(36,48,94,.4)}
+.inp:focus{outline:none;border-color:var(--blue);background:rgba(255,255,255,.55)}
+.choice{display:grid;gap:10px;margin-top:4px}
 .choice input{position:absolute;opacity:0;pointer-events:none}
-.choice label{display:flex;align-items:center;gap:10px;min-height:58px;padding:12px 16px;border:2.5px solid var(--ink);border-radius:16px;background:var(--paper);font-weight:900;font-size:17px;cursor:pointer;transition:transform .15s ease,background .15s ease}
-.choice label::before{content:"";flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:2.5px solid var(--ink);background:var(--white);box-shadow:inset 0 0 0 4px var(--white)}
-.choice input:checked + label{background:var(--yellow);transform:rotate(-1deg)}
-.choice input#vai-sim:checked + label{background:var(--lime)}
-.choice input#vai-nao:checked + label{background:var(--baby)}
-.choice input:checked + label::before{background:var(--pink)}
-.choice input:focus-visible + label{outline:3px solid var(--blue);outline-offset:3px}
-.counts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.stepper{display:flex;align-items:center;justify-content:space-between;border:2.5px solid var(--ink);border-radius:16px;background:var(--paper);padding:6px}
-.stepper button{width:44px;height:44px;border-radius:12px;border:2.5px solid var(--ink);background:var(--white);font-family:var(--f-display);font-size:24px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
-.stepper button:active{background:var(--pink-soft)}
-.stepper output{font-family:var(--f-display);font-size:28px;min-width:2ch;text-align:center;font-variant-numeric:tabular-nums}
-.err{display:none;margin:-8px 0 16px;font-weight:900;color:#C4126B;font-size:15px}
+.choice label{display:flex;align-items:center;gap:12px;min-height:54px;padding:8px 12px;font-family:var(--f-type);font-weight:700;font-size:16.5px;cursor:pointer;
+  background:url(img/grao.png),rgba(255,255,255,.65);border:2px solid rgba(30,27,36,.6);border-radius:3px;transition:transform .15s}
+.choice label::before{content:"";flex:0 0 auto;width:26px;height:26px;border:2.5px solid var(--ink);border-radius:3px;background:#fff;
+  display:grid;place-items:center;font-family:var(--f-hand);font-size:30px;line-height:1;color:var(--red)}
+.choice input:checked + label{transform:rotate(-.8deg);background:url(img/grao.png),var(--yellow)}
+.choice input:checked + label::before{content:"✗"}
+.choice input:focus-visible + label{outline:3px dashed var(--blue);outline-offset:3px}
+.counts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.counts .opt{font-family:var(--f-type);font-size:15px}
+.stepper{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-top:4px}
+.stepper button{width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;padding:0;
+  font-family:var(--f-mag);font-size:26px;line-height:1;color:#fff;background:var(--blue);box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.stepper button:active{transform:translateY(2px)}
+.stepper output{font-family:var(--f-mag);font-size:34px;min-width:1.6ch;text-align:center;font-variant-numeric:tabular-nums}
+.err{display:none;margin:-10px 0 16px;font-family:var(--f-hand);font-weight:700;font-size:22px;color:var(--red)}
 .err.show{display:block}
-.form-actions{margin-top:6px}
-.form-actions .btn{width:100%;min-height:64px;font-size:22px}
-.btn[disabled]{opacity:.7;pointer-events:none}
-.send-msg{text-align:center;margin:12px 0 0;font-weight:800;color:#C4126B;font-size:15px}
-.done{display:none;text-align:center;margin-top:26px;background:var(--white);border:3px solid var(--ink);border-radius:24px;padding:30px 20px 26px;box-shadow:6px 7px 0 var(--pink);position:relative}
-.done.show{display:block;animation:popin .6s cubic-bezier(.3,1.6,.5,1) both}
-.done h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(28px,8vw,36px);color:var(--pink);-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;line-height:1.05}
-.done p{margin:12px auto 0;font-size:19px;font-weight:800;max-width:26ch}
-.done .previa{font-size:13px;color:var(--ink-soft);font-weight:700;margin-top:14px}
-.done .again{margin-top:18px;background:none;border:0;font-weight:900;color:var(--blue);text-decoration:underline;text-underline-offset:4px;cursor:pointer;font-size:15px}
-.already{display:none;text-align:center;margin:0 auto 16px;font-weight:900;color:var(--ink);background:var(--lime);border:2.5px solid var(--ink);border-radius:999px;padding:6px 16px;width:fit-content;max-width:100%}
-.already.show{display:block}
+.send-msg{text-align:center;margin:12px 0 0;font-family:var(--f-hand);font-weight:700;font-size:22px;color:var(--red)}
+.dymo[disabled]{opacity:.75;pointer-events:none}
+.done{display:none;margin-top:26px;transform:rotate(-1deg)}
+.done.show{display:block;animation:drop .6s cubic-bezier(.2,1.3,.4,1) both}
+.done .scrap{padding:30px 18px 24px;text-align:center;background:url(img/grao.png),url(img/papel-rosa.webp) center/cover}
+.done p{margin:14px auto 0;font-weight:700;max-width:28ch}
+.done .previa{font-size:13px;color:var(--ink-soft);font-weight:400}
+.again{margin-top:16px;background:none;border:0;cursor:pointer;font-family:var(--f-hand);font-weight:700;font-size:22px;text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
 
 /* =========================================================
-   RODAPÉ
+   RODAPÉ (cartolina azul-marinho)
    ========================================================= */
-.foot{position:relative;overflow:hidden;padding:60px 0 50px;text-align:center;
-  background:radial-gradient(120% 80% at 50% 110%,#7A5BE0 0%,#5A3FB8 45%,#3B2A7A 100%);color:var(--white)}
-.foot .bigmoon{width:min(56vw,230px);height:min(56vw,230px);margin:0 auto 10px;display:block}
-.foot p.msg{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,7.6vw,36px);line-height:1.1;margin:0 auto;max-width:16ch;text-wrap:balance;
-  color:var(--white);text-shadow:3px 4px 0 var(--pink)}
-.foot p.dt{margin:18px 0 0;font-weight:900;letter-spacing:3px;font-size:18px;color:var(--yellow)}
-.foot .made{margin-top:30px;font-family:var(--f-hand);font-size:20px;opacity:.85}
-.foot .stk .s-out{stroke:rgba(255,255,255,.95)}
+.foot{background:url(img/grao.png),url(img/grao.png) 13px 7px,linear-gradient(180deg,#26346F,#1C2655);color:#fff;text-align:center;padding-bottom:50px}
+.foot .bigmoon{width:min(56vw,230px);margin:0 auto 6px;transform-origin:50% 0}
+.foot .ransom{margin-top:8px}
+.foot .msg{display:block;width:fit-content;max-width:100%;margin:18px auto 0;transform:rotate(-1deg)}
+.foot .msg .scrap{background:url(img/grao.png),var(--cream);color:var(--ink);padding:12px 18px;font-weight:700;text-wrap:balance}
+.foot .dymo{margin-top:22px;font-size:16px}
+.foot .made{margin-top:26px;font-family:var(--f-hand);font-weight:700;font-size:22px;color:rgba(255,255,255,.85)}
 
-/* revelar ao rolar (só quando o JS liga) */
-.js .rv{opacity:0;transform:translateY(28px) rotate(var(--rr,0deg));transition:opacity .7s ease,transform .8s cubic-bezier(.2,1.2,.4,1)}
+/* revelar ao rolar (ligado só pelo JS) */
+.js .rv{opacity:0;transform:translateY(26px) rotate(var(--rr,0deg));transition:opacity .7s ease,transform .8s cubic-bezier(.2,1.2,.4,1)}
 .js .rv.in{opacity:1;transform:rotate(var(--rr,0deg))}
 
 #confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
 
-
-/* =========================================================
-   CAMADA DE COR — cada parte do convite com um fundo vivo
-   ========================================================= */
-body{background-color:#FFC9E5}
-.hero{background:
-  radial-gradient(circle,rgba(255,255,255,.8) 2.6px,transparent 3.2px) 0 0/44px 44px,
-  radial-gradient(circle,rgba(46,107,255,.35) 2.2px,transparent 2.8px) 22px 22px/44px 44px,
-  linear-gradient(var(--grid) 1px,transparent 1px) 0 0/26px 26px,
-  linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/26px 26px,
-  linear-gradient(178deg,#B99CFF 0%,#D7B8FF 18%,#FFB3DA 48%,#FFC8A8 74%,#FFE070 100%)}
-.hero .lead{color:var(--ink)}
-.badge-top{border-color:var(--pink);color:var(--ink);background:#FFF6B8}
-.note-sec{background:#FFE070}
-.note{background-color:#FFE3F1;border-left-color:rgba(255,79,163,.6)}
-.count-sec{background:
-  radial-gradient(circle,rgba(255,255,255,.7) 2.6px,transparent 3.2px) 0 0/40px 40px,
-  radial-gradient(circle,rgba(255,216,61,.8) 2px,transparent 2.6px) 20px 20px/40px 40px,
-  linear-gradient(180deg,#6FA8FF,#8EC4FF)}
-.count-sec .sec-kicker,.count-sec .count-foot{color:var(--white);text-shadow:2px 2px 0 var(--ink)}
-.count-sec .sec-title{color:var(--white);-webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;text-shadow:3px 4px 0 var(--pink)}
-.cd:nth-child(2){--bgc:var(--lilac)}
-.info-sec{background:
-  linear-gradient(var(--grid) 1px,transparent 1px) 0 0/26px 26px,
-  linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/26px 26px,
-  linear-gradient(180deg,#D3F58C,#B9EC6A)}
-.info-sec .sec-kicker{color:#C4126B}
-.ficha{background:#FFF6B8;box-shadow:6px 6px 0 var(--pink)}
-.ficha li{border-bottom-color:rgba(53,36,90,.25)}
-.loc-sec{background:
-  radial-gradient(circle,rgba(255,255,255,.65) 2.6px,transparent 3.2px) 0 0/42px 42px,
-  linear-gradient(180deg,#C6ADFF,#D9C6FF)}
-.loc-sec .sec-kicker{color:#C4126B}
-.gift-sec{background:
-  radial-gradient(circle,rgba(255,255,255,.6) 2.6px,transparent 3.2px) 0 0/40px 40px,
-  radial-gradient(circle,rgba(255,79,163,.4) 2px,transparent 2.6px) 20px 20px/40px 40px,
-  linear-gradient(180deg,#FFB27A,#FFC98F)}
-.gift-sec .sec-kicker{color:#C4126B}
-.gb-body,.gb-lid{background-color:#FF4FA3}
-.gift:nth-child(1){background:#FFE3F1}
-.gift:nth-child(2){background:#FFF6B8}
-.gift:nth-child(3){background:#DDF0FF}
-.gift:nth-child(4){background:#EEE6FF}
-.rsvp-sec{background:
-  radial-gradient(circle,rgba(255,255,255,.75) 2.6px,transparent 3.2px) 0 0/44px 44px,
-  radial-gradient(circle,rgba(255,216,61,.9) 2.2px,transparent 2.8px) 22px 22px/44px 44px,
-  linear-gradient(180deg,#FF8CC6,#FFB3DA)}
-.rsvp-sec .rsvp-intro{color:var(--ink)}
-.btn.big{background:linear-gradient(90deg,#2E6BFF,#8B5CFF,#FF4FA3,#FF9536,#8B5CFF,#2E6BFF);background-size:300% 100%;animation:holo 6s linear infinite}
-@keyframes holo{to{background-position:300% 0}}
-.slam{background:#EAF5FF;box-shadow:6px 7px 0 var(--ink)}
-.slam .inp{background:var(--white)}
-.choice label{background:var(--white)}
-.stepper{background:var(--white)}
-.stepper button{background:#FFE3F1}
-.done{background:#FFF6B8}
-.already{background:var(--lime)}
-
-/* ric-rac por cima da emenda entre as faixas */
-.ricrac{position:relative;z-index:2;margin:-11px 0;background-color:transparent}
-.ricrac.orange{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 22'%3E%3Cpath d='M0 11 Q10 -3 20 11 T40 11' fill='none' stroke='%23FF9536' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")}
-.ricrac.pinkk{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 22'%3E%3Cpath d='M0 11 Q10 -3 20 11 T40 11' fill='none' stroke='%23FF4FA3' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")}
-.ricrac.lilac{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 22'%3E%3Cpath d='M0 11 Q10 -3 20 11 T40 11' fill='none' stroke='%237A4DFF' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")}
-
 @media (min-width:620px){
-  .info-grid{grid-template-columns:1.2fr .8fr;align-items:center}
+  .info-grid{grid-template-columns:1fr 1fr;align-items:center}
 }
 @media (max-width:360px){
-  .count{gap:7px}
-  .cd .l{font-size:10.5px;letter-spacing:.8px}
-  .postal .addr{padding-right:0;padding-top:86px}
-  .postmark{display:none}
+  .count{gap:6px}
+  .cd .lbl{font-size:11px;padding:2px 4px}
+  .postal .addr{padding-right:0;padding-top:96px}
+  .carimbo{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
@@ -417,187 +349,124 @@ body{background-color:#FFC9E5}
 }
 </style>
 
-<!-- ====== biblioteca de adesivos ====== -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="g-disco" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#FFFFFF"/><stop offset=".35" stop-color="#E7DEFF"/><stop offset=".6" stop-color="#BDE8FF"/><stop offset="1" stop-color="#9C8BD9"/>
-    </linearGradient>
-    <clipPath id="c-disco"><circle cx="50" cy="56" r="38"/></clipPath>
-    <linearGradient id="g-holo" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#FF8CC6"/><stop offset=".3" stop-color="#C6ADFF"/><stop offset=".55" stop-color="#8EC4FF"/><stop offset=".78" stop-color="#C9F06B"/><stop offset="1" stop-color="#FFD83D"/>
-    </linearGradient>
-    <symbol id="i-burst" viewBox="0 0 100 100">
-      <path d="M50.0 1.0 L55.1 8.3 L61.7 2.4 L64.9 10.7 L72.8 6.6 L73.9 15.4 L82.5 13.3 L81.4 22.1 L90.3 22.2 L87.2 30.5 L95.8 32.6 L90.8 39.9 L98.6 44.1 L92.0 50.0 L98.6 55.9 L90.8 60.1 L95.8 67.4 L87.2 69.5 L90.3 77.8 L81.4 77.9 L82.5 86.7 L73.9 84.6 L72.8 93.4 L64.9 89.3 L61.7 97.6 L55.1 91.7 L50.0 99.0 L44.9 91.7 L38.3 97.6 L35.1 89.3 L27.2 93.4 L26.1 84.6 L17.5 86.7 L18.6 77.9 L9.7 77.8 L12.8 69.5 L4.2 67.4 L9.2 60.1 L1.4 55.9 L8.0 50.0 L1.4 44.1 L9.2 39.9 L4.2 32.6 L12.8 30.5 L9.7 22.2 L18.6 22.1 L17.5 13.3 L26.1 15.4 L27.2 6.6 L35.1 10.7 L38.3 2.4 L44.9 8.3 Z" fill="url(#g-holo)" stroke="#35245A" stroke-width="1.2" stroke-linejoin="round"/>
-      <circle cx="50" cy="50" r="36" fill="none" stroke="#fff" stroke-width="1.2" stroke-dasharray="2.5 2.5"/>
-    </symbol>
-    <symbol id="i-moon" viewBox="0 0 100 100">
-      <path class="s-out" d="M58 8 A44 44 0 1 0 94 64 A36 36 0 0 1 58 8 Z" fill="#FFD83D" stroke-linejoin="round"/>
-      <path d="M58 8 A44 44 0 1 0 94 64 A36 36 0 0 1 58 8 Z" fill="none" stroke="#35245A" stroke-width="3.5" stroke-linejoin="round"/>
-      <path d="M30 50 q5 -6 10 0" fill="none" stroke="#35245A" stroke-width="3.5" stroke-linecap="round"/>
-      <path d="M33 66 q8 8 17 1" fill="none" stroke="#35245A" stroke-width="3.5" stroke-linecap="round"/>
-      <ellipse cx="25" cy="60" rx="5" ry="3.2" fill="#FF8FC6"/>
-    </symbol>
-    <symbol id="i-star" viewBox="0 0 100 100">
-      <path class="s-out" d="M50 8 L61 37 L93 38 L68 58 L77 90 L50 72 L23 90 L32 58 L7 38 L39 37 Z" fill="currentColor" stroke-linejoin="round"/>
-      <path d="M50 8 L61 37 L93 38 L68 58 L77 90 L50 72 L23 90 L32 58 L7 38 L39 37 Z" fill="none" stroke="#35245A" stroke-width="3.5" stroke-linejoin="round"/>
-    </symbol>
-    <symbol id="i-spark" viewBox="0 0 100 100">
-      <path class="s-out" d="M50 2 C54 36 64 46 98 50 C64 54 54 64 50 98 C46 64 36 54 2 50 C36 46 46 36 50 2 Z" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-heart" viewBox="0 0 100 100">
-      <path class="s-out" d="M50 88 C20 66 6 50 6 32 C6 18 17 8 30 8 C40 8 47 14 50 22 C53 14 60 8 70 8 C83 8 94 18 94 32 C94 50 80 66 50 88 Z" fill="currentColor"/>
-      <path d="M50 88 C20 66 6 50 6 32 C6 18 17 8 30 8 C40 8 47 14 50 22 C53 14 60 8 70 8 C83 8 94 18 94 32 C94 50 80 66 50 88 Z" fill="none" stroke="#35245A" stroke-width="3.5"/>
-      <path d="M24 26 q4 -8 12 -7" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8"/>
-    </symbol>
-    <symbol id="i-flower" viewBox="0 0 100 100">
-      <g class="s-out" fill="currentColor">
-        <circle cx="50" cy="24" r="18"/><circle cx="75" cy="42" r="18"/><circle cx="66" cy="72" r="18"/><circle cx="34" cy="72" r="18"/><circle cx="25" cy="42" r="18"/>
-      </g>
-      <g fill="none" stroke="#35245A" stroke-width="3">
-        <circle cx="50" cy="24" r="18"/><circle cx="75" cy="42" r="18"/><circle cx="66" cy="72" r="18"/><circle cx="34" cy="72" r="18"/><circle cx="25" cy="42" r="18"/>
-      </g>
-      <g fill="currentColor"><circle cx="50" cy="24" r="16.3"/><circle cx="75" cy="42" r="16.3"/><circle cx="66" cy="72" r="16.3"/><circle cx="34" cy="72" r="16.3"/><circle cx="25" cy="42" r="16.3"/></g>
-      <circle cx="50" cy="50" r="15" fill="#FFD83D" stroke="#35245A" stroke-width="3"/>
-    </symbol>
-    <symbol id="i-disco" viewBox="0 0 100 100">
-      <line x1="50" y1="0" x2="50" y2="18" stroke="#35245A" stroke-width="3"/>
-      <circle class="s-out" cx="50" cy="56" r="38" fill="url(#g-disco)"/>
-      <g clip-path="url(#c-disco)" stroke="#8D7CC7" stroke-width="1.6" fill="none">
-        <path d="M12 30 H88 M12 40 H88 M12 50 H88 M12 60 H88 M12 70 H88 M12 80 H88"/>
-        <path d="M22 18 V94 M32 18 V94 M42 18 V94 M52 18 V94 M62 18 V94 M72 18 V94 M82 18 V94"/>
-        <rect x="32" y="30" width="10" height="10" fill="#fff"/><rect x="62" y="50" width="10" height="10" fill="#FFC4E1"/><rect x="42" y="60" width="10" height="10" fill="#BDE8FF"/><rect x="72" y="70" width="10" height="10" fill="#fff"/><rect x="22" y="50" width="10" height="10" fill="#E8FFC2"/>
-      </g>
-      <circle cx="50" cy="56" r="38" fill="none" stroke="#35245A" stroke-width="3.5"/>
-      <path d="M30 34 q6 -8 16 -9" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="i-badge" viewBox="0 0 100 100">
-      <path d="M50 2 L58 14 L72 8 L74 23 L89 24 L84 38 L97 46 L86 56 L93 70 L78 73 L76 88 L62 83 L54 96 L44 85 L30 92 L26 77 L11 74 L17 60 L4 50 L16 41 L10 27 L25 25 L27 10 L41 15 Z" fill="#2E6BFF" stroke="#35245A" stroke-width="3.5" stroke-linejoin="round"/>
-      <circle cx="50" cy="49" r="30" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="4 5"/>
-    </symbol>
-  </defs>
-</svg>
-
-<!-- ======================= HERO ======================= -->
-<header class="hero" id="topo">
+<!-- ======================= CAPA ======================= -->
+<header class="sheet p-rosa hero" id="topo">
   <div class="wrap">
-    <span class="stk float" style="--r:-12deg;width:56px;height:56px;top:4px;left:var(--gutter-l)" data-boing><svg><use href="#i-heart" style="color:var(--pink)"/></svg></span>
-    <span class="stk twinkle" style="width:30px;height:30px;top:64px;left:calc(var(--gutter-l) + 46px)" data-boing><svg><use href="#i-spark" style="color:var(--lilac)"/></svg></span>
-    <span class="stk float d2" style="--r:10deg;width:50px;height:50px;top:6px;right:var(--gutter-r)" data-boing><svg><use href="#i-star" style="color:var(--yellow)"/></svg></span>
-    <span class="stk twinkle d2" style="width:24px;height:24px;top:70px;right:calc(var(--gutter-r) + 46px)" data-boing><svg><use href="#i-spark" style="color:var(--blue)"/></svg></span>
+    <span class="stk sway" style="--r:-14deg;width:66px;top:-8px;left:calc(var(--gutter-l) - 6px)" data-boing><img src="img/estrela-dourada.png" width="180" height="180" alt=""></span>
+    <span class="stk bob d2" style="--r:12deg;width:58px;top:-4px;right:calc(var(--gutter-r) - 4px)" data-boing><img src="img/flor-tecido-rosa.png" width="180" height="180" alt=""></span>
 
-    <span class="badge-top enter" style="--dl:.05s">✶ você foi convidado(a)! ✶</span>
-    <h1 class="title">
-      <span class="lua enter" style="--dl:.15s">Lua</span>
-      <span class="faz enter" style="--dl:.35s">faz <span class="dois"><svg aria-hidden="true"><use href="#i-badge"/></svg><b>2!</b></span></span>
-      <span class="sr"> Os 2 aninhos da Lua</span>
+    <span class="kicker drop" style="--dl:.05s">✶ você foi convidado(a)! ✶</span>
+    <h1 class="title" aria-label="Lua faz 2!">
+      <span class="t1 ransom drop" style="--dl:.15s" data-ransom="LUA" data-seed="3"></span>
+      <span class="t2 ransom drop" style="--dl:.35s" data-ransom="faz 2!" data-seed="11"></span>
     </h1>
-    <p class="lead enter" style="--dl:.5s">Você é nosso convidado para comemorar esse dia especial!</p>
-    <div class="date-pill enter" style="--dl:.6s"><span>26 DE DEZEMBRO DE 2026</span><span class="dot" aria-hidden="true"></span><span>ÀS 16H</span></div>
+    <span class="lead-strip sh drop" style="--dl:.5s"><span class="scrap">Você é nosso convidado para comemorar esse dia especial!</span></span>
+    <br>
+    <span class="ticket sh drop" style="--dl:.6s"><div><span class="num">Nº 02</span><span class="when"><b>26 DE DEZEMBRO DE 2026</b>SÁBADO · ÀS 16H</span></div></span>
 
-    <div class="polaroid-zone">
-      <div class="hero-stk enter" style="--dl:.75s" id="polaroid">
-        <span class="burst" aria-hidden="true"><svg><use href="#i-burst"/></svg></span>
-        <img class="fig" src="lua-figurinha-1.webp" width="630" height="1072" alt="Lua sorrindo, com os cachinhos soltos e a mão na cintura">
-        <span class="name-tag">nossa Lua 🌙</span>
-      </div>
-      <span class="stk pop float" style="--dl:1s;--r:-8deg;width:96px;height:96px;top:-36px;left:-40px;z-index:4" data-boing><svg><use href="#i-moon"/></svg></span>
-      <span class="stk pop swing" style="--dl:1.1s;width:66px;height:66px;top:-50px;right:-22px;z-index:4" data-boing><svg><use href="#i-disco"/></svg></span>
-      <span class="stk pop float d3" style="--dl:1.2s;--r:14deg;width:54px;height:54px;top:40%;right:-34px;z-index:4" data-boing><svg><use href="#i-star" style="color:var(--pink)"/></svg></span>
-      <span class="stk pop float d2" style="--dl:1.3s;width:60px;height:60px;bottom:30px;left:-34px;z-index:4" data-boing><svg><use href="#i-flower" style="color:var(--baby)"/></svg></span>
-      <span class="stk pop float" style="--dl:1.4s;--r:-10deg;width:46px;height:46px;bottom:-16px;right:12px;z-index:4" data-boing><svg><use href="#i-heart" style="color:var(--orange)"/></svg></span>
-      <span class="stk pop twinkle d3" style="--dl:1.5s;width:30px;height:30px;top:30%;left:-24px;z-index:4" data-boing><svg><use href="#i-spark" style="color:var(--yellow)"/></svg></span>
-      <span class="stk pop twinkle" style="--dl:1.6s;width:26px;height:26px;bottom:90px;right:-18px;z-index:4" data-boing><svg><use href="#i-spark" style="color:var(--lime)"/></svg></span>
+    <div class="collage">
+      <div class="bgnews sh"><div class="scrap"></div></div>
+      <div class="bgpink sh"><div class="scrap"></div></div>
+      <span class="stk" style="width:44%;left:-4%;top:-2%;transform:rotate(-8deg)" data-boing><img src="img/palavra-0.png" width="245" height="98" alt=""></span>
+      <span class="stk" style="width:44%;right:-4%;top:58%;transform:rotate(7deg);z-index:5" data-boing><img src="img/palavra-2.png" width="265" height="90" alt=""></span>
+      <figure class="foto drop" style="--dl:.75s;margin:0" id="polaroid">
+        <span class="tape" aria-hidden="true"></span>
+        <!-- FOTO DA LUA: para trocar, substitua img/foto-lua-1.webp -->
+        <img src="img/foto-lua-1.webp" width="611" height="1044" alt="Lua sorrindo, com os cachinhos soltos e a mão na cintura">
+      </figure>
+      <span class="stk sway" style="--r:-10deg;width:30%;top:6%;right:0;z-index:4" data-boing><img src="img/globo.png" width="300" height="300" alt=""></span>
+      <span class="stk bob" style="--r:-12deg;width:28%;left:-3%;top:34%;z-index:4" data-boing><img src="img/lua-amarela.png" width="360" height="360" alt=""></span>
+      <span class="stk bob d2" style="--r:10deg;width:27%;left:2%;bottom:4%;z-index:4" data-boing><img src="img/estrela-paete.png" width="260" height="260" alt=""></span>
+      <span class="stk sway d2" style="--r:6deg;width:24%;right:3%;bottom:-2%;z-index:4" data-boing><img src="img/flor-tecido.png" width="220" height="220" alt=""></span>
     </div>
 
-    <div class="scroll-hint enter" style="--dl:1.6s">role pra ver tudinho<span aria-hidden="true">↓</span></div>
+    <div class="scroll-hint">role pra ver tudinho <span aria-hidden="true">↓</span></div>
   </div>
 </header>
 
-<div class="note-sec">
+<section class="sheet p-amarelo" aria-label="Recadinho">
   <div class="wrap">
-    <div class="note rv" style="--rr:1.2deg">
-      <span class="tape" aria-hidden="true"></span>
-      <p>Dois aninhos de muito amor, descobertas e alegria! 💖</p>
-      <p>E queremos você com a gente para comemorar esse momento tão especial.</p>
-      <p class="sig">com carinho, família da Lua 🌙</p>
+    <div class="note-wrap sh rv" style="--rr:-1.5deg">
+      <span class="tape azul" aria-hidden="true"></span>
+      <div class="note scrap">
+        <p>Dois aninhos de muito amor, descobertas e alegria! 💖</p>
+        <p>E queremos você com a gente para comemorar esse momento tão especial.</p>
+        <p class="sig">com carinho, família da Lua 🌙</p>
+      </div>
     </div>
   </div>
-</div>
-
-<hr class="ricrac">
+</section>
 
 <!-- ======================= CONTAGEM ======================= -->
-<section class="count-sec" aria-labelledby="t-count">
+<section class="sheet p-azul" aria-labelledby="t-count">
   <div class="wrap">
-    <p class="sec-kicker">a festa tá chegando!</p>
-    <h2 class="sec-title" id="t-count">Faltam…</h2>
-    <div class="count rv" id="count" aria-live="off">
-      <div class="cd"><span class="n" id="cd-d">00</span><span class="l">dias</span></div>
-      <div class="cd"><span class="n" id="cd-h">00</span><span class="l">horas</span></div>
-      <div class="cd"><span class="n" id="cd-m">00</span><span class="l">min</span></div>
-      <div class="cd"><span class="n" id="cd-s">00</span><span class="l">seg</span></div>
+    <span class="stk sway" style="--r:8deg;width:52px;top:-30px;right:var(--gutter-r)" data-boing><img src="img/estrela-prata.png" width="180" height="180" alt="" loading="lazy"></span>
+    <span class="kicker">a festa tá chegando!</span>
+    <h2 class="ransom s1" id="t-count" data-ransom="Faltam…" data-seed="21"></h2>
+    <div class="count rv" id="count">
+      <div class="cd"><div class="sh"><div class="scrap"><span class="ransom rnum" id="cd-d" aria-live="off">00</span><span class="lbl">dias</span></div></div></div>
+      <div class="cd"><div class="sh"><div class="scrap"><span class="ransom rnum" id="cd-h">00</span><span class="lbl">horas</span></div></div></div>
+      <div class="cd"><div class="sh"><div class="scrap"><span class="ransom rnum" id="cd-m">00</span><span class="lbl">min</span></div></div></div>
+      <div class="cd"><div class="sh"><div class="scrap"><span class="ransom rnum" id="cd-s">00</span><span class="lbl">seg</span></div></div></div>
     </div>
-    <p class="today" id="today">🎉 É hoje! 🎉</p>
-    <p class="count-foot">até sábado, 26/12 às 16h ✨</p>
+    <div class="today" id="today"><span class="ransom s2" data-ransom="É hoje!" data-seed="5"></span></div>
+    <p class="count-foot"><span class="sh">até sábado, 26/12, às 16h ✨</span></p>
   </div>
 </section>
-
-<hr class="ricrac orange">
 
 <!-- ======================= FICHA ======================= -->
-<section class="info-sec" aria-labelledby="t-info">
+<section class="sheet p-lilas" aria-labelledby="t-info">
   <div class="wrap">
-    <p class="sec-kicker">anota aí no diário</p>
-    <h2 class="sec-title" id="t-info">A <span class="hl">festa</span></h2>
+    <span class="kicker">anota aí no diário</span>
+    <h2 class="ransom s1" id="t-info" data-ransom="A festa" data-seed="7"></h2>
     <div class="info-grid">
-      <div class="ficha rv" style="--rr:-1deg">
-        <span class="tape" aria-hidden="true"></span>
-        <h3>ficha da festa ♡</h3>
-        <ul>
-          <li><span class="e">🌙</span><span>Lua faz 2 anos</span></li>
-          <li><span class="e">📅</span><span>26.12.2026</span></li>
-          <li><span class="e">⏰</span><span>16h</span></li>
-          <li><span class="e">📍</span><span>Rua José Edilson Batista, 170</span></li>
-          <li><span class="e">🎀</span><span>Tema: Anos 2000</span></li>
-        </ul>
+      <div class="ficha-wrap sh rv" style="--rr:-1.2deg">
+        <span class="tape amarela" aria-hidden="true"></span>
+        <div class="ficha scrap">
+          <h3>Ficha da festa</h3>
+          <ul>
+            <li><span class="e">🌙</span><span>Lua faz 2 anos</span></li>
+            <li><span class="e">📅</span><span>26.12.2026</span></li>
+            <li><span class="e">⏰</span><span>16h</span></li>
+            <li><span class="e">📍</span><span>Rua José Edilson Batista, 170</span></li>
+            <li><span class="e">🎀</span><span>Tema: Anos 2000</span></li>
+          </ul>
+        </div>
       </div>
-      <figure class="sheet rv" style="--rr:2deg">
-        <span class="tape" aria-hidden="true"></span>
-        <img class="f2" src="lua-figurinha-2.webp" width="505" height="1076" alt="Lua dando risada" loading="lazy">
-        <img class="f3" src="lua-figurinha-3.webp" width="640" height="1066" alt="Lua fazendo biquinho com a mão na cintura" loading="lazy">
-        <figcaption>pose de aniversariante ✨</figcaption>
-        <span class="stk float" style="--r:12deg;width:48px;height:48px;top:-20px;right:-10px" data-boing><svg><use href="#i-star" style="color:var(--yellow)"/></svg></span>
-        <span class="stk float d2" style="width:40px;height:40px;top:34%;left:-14px" data-boing><svg><use href="#i-heart" style="color:var(--pink)"/></svg></span>
-      </figure>
+      <div class="fotos2 rv">
+        <figure class="f f2" style="margin:0"><span class="tape rosa" aria-hidden="true"></span>
+          <img src="img/foto-lua-2.webp" width="486" height="1044" alt="Lua dando risada, em preto e branco" loading="lazy"></figure>
+        <figure class="f f3" style="margin:0"><span class="tape" aria-hidden="true"></span>
+          <img src="img/foto-lua-3.webp" width="624" height="1044" alt="Lua fazendo biquinho com a mão na cintura" loading="lazy"></figure>
+        <span class="stk" style="width:34%;left:30%;bottom:2%;transform:rotate(-6deg);z-index:6" data-boing><img src="img/palavra-1.png" width="201" height="88" alt="" loading="lazy"></span>
+        <span class="stk bob" style="--r:14deg;width:20%;right:-2%;top:0;z-index:6" data-boing><img src="img/estrela-rosa.png" width="180" height="180" alt="" loading="lazy"></span>
+      </div>
     </div>
   </div>
 </section>
 
-<hr class="ricrac pinkk">
-
 <!-- ======================= LOCAL ======================= -->
-<section class="loc-sec" aria-labelledby="t-loc">
+<section class="sheet p-menta" aria-labelledby="t-loc">
   <div class="wrap">
-    <p class="sec-kicker">pra ninguém se perder</p>
-    <h2 class="sec-title" id="t-loc">ONDE VAI SER? 📍</h2>
-    <div class="postal rv" style="--rr:-.8deg">
-      <div class="postal-in">
-        <div class="stamp" aria-hidden="true"><div class="stamp-in"><svg><use href="#i-moon"/></svg></div></div>
-        <div class="postmark" aria-hidden="true">NATAL · RN<br>★ 26 DEZ ★<br>2026</div>
+    <span class="kicker">pra ninguém se perder</span>
+    <h2 class="ransom s1" id="t-loc" data-ransom="Onde vai ser?" data-seed="13"></h2>
+    <div class="postal-wrap sh rv" style="--rr:-1deg">
+      <img class="selo" src="img/selo-lua.png" width="300" height="360" alt="Selo com a foto da Lua" loading="lazy">
+      <div class="carimbo" aria-hidden="true">NATAL · RN<br>★ 26 DEZ ★<br>2026</div>
+      <div class="postal">
         <div class="addr">
           <p class="lbl">Endereço</p>
           <p class="street">Rua José Edilson Batista, 170</p>
           <p class="ref">Próximo à Igreja Crescendo com Cristo</p>
         </div>
-        <div class="when">
-          <span class="chip">📅 26 de dezembro de 2026</span>
-          <span class="chip">⏰ 16h</span>
+        <div class="lines">
+          <p>📅 26 de dezembro de 2026</p>
+          <p>⏰ às 16h</p>
         </div>
       </div>
     </div>
     <div class="loc-actions">
-      <a class="btn blue" id="btn-map" target="_blank" rel="noopener"
+      <a class="dymo azul big" target="_blank" rel="noopener"
          href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Jos%C3%A9%20Edilson%20Batista%2C%20170%2C%20Nossa%20Senhora%20da%20Apresenta%C3%A7%C3%A3o%2C%20Natal%20-%20RN">ABRIR LOCALIZAÇÃO 🗺️</a>
       <a class="link-soft" target="_blank" rel="noopener"
          href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Anivers%C3%A1rio%20de%202%20anos%20da%20Lua%20%F0%9F%8C%99&amp;dates=20261226T190000Z/20261226T230000Z&amp;details=Lua%20faz%202!%20Tema%3A%20Anos%202000.&amp;location=Rua%20Jos%C3%A9%20Edilson%20Batista%2C%20170%2C%20pr%C3%B3ximo%20%C3%A0%20Igreja%20Crescendo%20com%20Cristo%2C%20Natal%20-%20RN">salvar na minha agenda 📅</a>
@@ -605,178 +474,129 @@ body{background-color:#FFC9E5}
   </div>
 </section>
 
-<hr class="ricrac blue">
-
 <!-- ======================= PRESENTES ======================= -->
-<section class="gift-sec" aria-labelledby="t-gift">
+<section class="sheet p-pessego" aria-labelledby="t-gift">
   <div class="wrap">
-    <p class="sec-kicker">se quiser presentear…</p>
-    <h2 class="sec-title" id="t-gift">Um mimo pra Lua</h2>
-    <button class="giftbox" id="giftbox" aria-expanded="false" aria-controls="gifts">
-      <div class="gb-lid">
-        <svg class="gb-bow" viewBox="0 0 110 60" aria-hidden="true">
-          <path d="M55 50 C30 10 6 14 10 34 C13 50 40 52 55 50 Z" fill="#FFD83D" stroke="#35245A" stroke-width="3.5" stroke-linejoin="round"/>
-          <path d="M55 50 C80 10 104 14 100 34 C97 50 70 52 55 50 Z" fill="#FFD83D" stroke="#35245A" stroke-width="3.5" stroke-linejoin="round"/>
-          <circle cx="55" cy="48" r="9" fill="#FF9536" stroke="#35245A" stroke-width="3.5"/>
-        </svg>
-      </div>
-      <div class="gb-body">
-        <span class="gb-label"><strong>🎁 SUGESTÕES DE PRESENTE</strong><em id="gb-hint">clique para abrir</em></span>
-      </div>
+    <span class="kicker">se quiser presentear…</span>
+    <h2 class="ransom s1" id="t-gift" data-ransom="Um mimo pra Lua" data-seed="17"></h2>
+    <button class="env" id="giftbox" aria-expanded="false" aria-controls="gifts">
+      <span class="env-body" aria-hidden="true"></span>
+      <span class="env-flap" aria-hidden="true"></span>
+      <span class="env-tag"><strong>🎁 SUGESTÕES DE PRESENTE</strong><em id="gb-hint">clique para abrir</em></span>
     </button>
-
     <div class="gifts-wrap" id="gifts">
       <div>
         <div class="gifts">
-          <div class="gift" style="--r:-2deg;--dl:.15s;--c:var(--pink)">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <path d="M50 10 a7 7 0 1 1 7 7 v5" fill="none" stroke="#35245A" stroke-width="3.5" stroke-linecap="round"/>
-              <path d="M50 22 L14 40 H86 Z" fill="none" stroke="#35245A" stroke-width="3.5" stroke-linejoin="round"/>
-              <path d="M38 38 L36 50 L22 92 H78 L64 50 L62 38 Q50 46 38 38 Z" fill="#FF4FA3" stroke="#35245A" stroke-width="3.5" stroke-linejoin="round"/>
-              <path d="M36 50 H64" stroke="#35245A" stroke-width="3"/>
-              <circle cx="40" cy="66" r="3" fill="#fff"/><circle cx="56" cy="62" r="3" fill="#fff"/><circle cx="48" cy="78" r="3" fill="#fff"/><circle cx="64" cy="80" r="3" fill="#fff"/><circle cx="32" cy="82" r="3" fill="#fff"/>
-            </svg>
-            <h4>👗 ROUPINHAS</h4>
-            <span class="size">Tamanho: 3 anos</span>
-          </div>
-          <div class="gift" style="--r:2deg;--dl:.3s;--c:var(--orange)">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <g transform="translate(-4 -20)">
-                <path d="M14 70 C14 54 21 46 32 46 L44 46 C50 57 60 61 74 63 C84 64 88 68 88 74 L88 76 L14 76 Z" fill="#FFD83D" stroke="#35245A" stroke-width="3.5" stroke-linejoin="round"/>
-                <rect x="12" y="76" width="78" height="8" rx="4" fill="#fff" stroke="#35245A" stroke-width="3"/>
-              </g>
-              <path d="M18 74 C18 58 25 50 36 50 L48 50 C54 61 64 65 78 67 C88 68 92 72 92 78 L92 80 L18 80 Z" fill="#FF4FA3" stroke="#35245A" stroke-width="3.5" stroke-linejoin="round"/>
-              <path d="M40 51 L60 66" stroke="#35245A" stroke-width="5" stroke-linecap="round"/>
-              <circle cx="59" cy="65" r="3.5" fill="#FFD83D" stroke="#35245A" stroke-width="2"/>
-              <circle cx="30" cy="66" r="2.5" fill="#fff"/><circle cx="72" cy="74" r="2.5" fill="#fff"/><circle cx="44" cy="72" r="2.5" fill="#fff"/>
-              <rect x="16" y="80" width="78" height="9" rx="4.5" fill="#fff" stroke="#35245A" stroke-width="3"/>
-            </svg>
-            <h4>👟 SAPATOS</h4>
-            <span class="size">Numeração: 25</span>
-          </div>
-          <div class="gift" style="--r:1.5deg;--dl:.45s;--c:var(--blue)">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <rect x="10" y="56" width="36" height="36" rx="4" fill="#A8DCFF" stroke="#35245A" stroke-width="3.5"/>
-              <rect x="54" y="56" width="36" height="36" rx="4" fill="#C9F06B" stroke="#35245A" stroke-width="3.5"/>
-              <rect x="32" y="14" width="36" height="36" rx="4" fill="#FFD83D" stroke="#35245A" stroke-width="3.5" transform="rotate(-6 50 32)"/>
-              <text x="28" y="83" text-anchor="middle" font-family="Bagel Fat One, Arial Black, sans-serif" font-size="24" fill="#35245A">L</text>
-              <text x="50" y="41" text-anchor="middle" font-family="Bagel Fat One, Arial Black, sans-serif" font-size="24" fill="#35245A" transform="rotate(-6 50 32)">U</text>
-              <text x="72" y="83" text-anchor="middle" font-family="Bagel Fat One, Arial Black, sans-serif" font-size="24" fill="#35245A">A</text>
-            </svg>
-            <h4>🧩 BRINQUEDOS EDUCATIVOS</h4>
-          </div>
-          <div class="gift" style="--r:-1.5deg;--dl:.6s;--c:var(--lilac)">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <rect x="44" y="8" width="12" height="10" rx="2" fill="#fff" stroke="#35245A" stroke-width="3"/>
-              <path d="M56 12 h12" stroke="#35245A" stroke-width="3" stroke-linecap="round"/>
-              <rect x="40" y="18" width="20" height="10" rx="2" fill="#FF4FA3" stroke="#35245A" stroke-width="3"/>
-              <rect x="30" y="28" width="40" height="62" rx="12" fill="#B49BFF" stroke="#35245A" stroke-width="3.5"/>
-              <rect x="38" y="46" width="24" height="26" rx="5" fill="#fff" stroke="#35245A" stroke-width="2.5"/>
-              <path d="M50 66 C43 61 41 58 41 55 C41 52 44 50 46 50 C48 50 49.5 51.5 50 53 C50.5 51.5 52 50 54 50 C56 50 59 52 59 55 C59 58 57 61 50 66 Z" fill="#FF4FA3"/>
-              <path d="M36 36 v14" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8"/>
-              <path class="s-out" d="M80 30 C81 38 83 40 90 41 C83 42 81 44 80 52 C79 44 77 42 70 41 C77 40 79 38 80 30 Z" fill="#FFD83D"/>
-            </svg>
-            <h4>🧴 COSMÉTICOS</h4>
-          </div>
+          <div class="gift sh" style="--r:-2deg;--dl:.15s"><div class="scrap">
+            <img src="img/item-vestido.png" width="220" height="220" alt="" loading="lazy">
+            <h4>👗 Roupinhas</h4><span class="dymo preta">Tamanho 3 anos</span></div></div>
+          <div class="gift sh" style="--r:2.5deg;--dl:.3s"><div class="scrap">
+            <img src="img/item-sapato.png" width="220" height="220" alt="" loading="lazy">
+            <h4>👟 Sapatos</h4><span class="dymo">Numeração 25</span></div></div>
+          <div class="gift sh" style="--r:1.5deg;--dl:.45s"><div class="scrap">
+            <img src="img/item-blocos.png" width="220" height="220" alt="" loading="lazy">
+            <h4>🧩 Brinquedos educativos</h4></div></div>
+          <div class="gift sh" style="--r:-1.5deg;--dl:.6s"><div class="scrap">
+            <img src="img/item-cosmetico.png" width="220" height="220" alt="" loading="lazy">
+            <h4>🧴 Cosméticos</h4></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="ricrac lilac">
-
-<!-- ======================= RSVP ======================= -->
-<section class="rsvp-sec" id="confirmar" aria-labelledby="t-rsvp">
+<!-- ======================= CONFIRMAÇÃO ======================= -->
+<section class="sheet p-amarelo" id="confirmar" aria-labelledby="t-rsvp">
   <div class="wrap">
-    <span class="stk float" style="--r:-10deg;width:46px;height:46px;top:-8px;left:var(--gutter-l)" data-boing><svg><use href="#i-star" style="color:var(--lime)"/></svg></span>
-    <span class="stk float d2" style="width:52px;height:52px;top:-10px;right:var(--gutter-r)" data-boing><svg><use href="#i-moon"/></svg></span>
-    <h2 class="sec-title" id="t-rsvp">Você vem comemorar com a Lua? 🌙</h2>
-    <p class="rsvp-intro">Confirma pra gente preparar tudo com muito carinho pra você!</p>
-    <p class="already" id="already">✓ você já confirmou neste celular</p>
+    <span class="stk bob" style="--r:-10deg;width:58px;top:-34px;left:var(--gutter-l)" data-boing><img src="img/lua-jornal.png" width="170" height="170" alt="" loading="lazy"></span>
+    <span class="stk sway" style="--r:10deg;width:54px;top:-30px;right:var(--gutter-r)" data-boing><img src="img/estrela-rosa.png" width="180" height="180" alt="" loading="lazy"></span>
+    <h2 class="ransom s2" id="t-rsvp" data-ransom="Você vem comemorar com a Lua?" data-seed="29"></h2>
+    <span class="rsvp-intro sh"><span class="scrap">Confirma pra gente preparar tudo com muito carinho pra você!</span></span>
+    <span class="already dymo preta" id="already">✓ você já confirmou neste celular</span>
 
-    <button class="btn big" id="open-form" aria-expanded="false" aria-controls="form-wrap">CONFIRMAR PRESENÇA 💖</button>
+    <button class="dymo big" id="open-form" aria-expanded="false" aria-controls="form-wrap">CONFIRMAR PRESENÇA 💖</button>
 
     <div class="form-wrap" id="form-wrap">
       <div>
-        <form class="slam" id="rsvp" novalidate>
-          <span class="tape" aria-hidden="true"></span>
-          <div class="field">
-            <label for="f-nome">Nome do convidado</label>
-            <input class="inp" id="f-nome" name="nome" autocomplete="name" placeholder="Seu nome" maxlength="120" required>
-          </div>
-          <p class="err" id="e-nome">Escreve seu nome, por favor 🙂</p>
-
-          <div class="field" role="radiogroup" aria-labelledby="l-vai">
-            <span class="flabel" id="l-vai">Você vai à festa?</span>
-            <div class="choice">
-              <input type="radio" id="vai-sim" name="vai" value="sim"><label for="vai-sim">Sim, estarei lá! 💖</label>
-              <input type="radio" id="vai-nao" name="vai" value="nao"><label for="vai-nao">Infelizmente não vou conseguir 🥺</label>
-            </div>
-          </div>
-          <p class="err" id="e-vai">Escolhe uma das opções acima 💌</p>
-
-          <div id="so-sim">
+        <div class="form-paper sh">
+          <span class="tape verde" aria-hidden="true"></span>
+          <form class="note scrap" id="rsvp" novalidate>
             <div class="field">
-              <span class="flabel">Quantas pessoas?</span>
-              <div class="counts">
-                <div>
-                  <span class="opt" id="l-ad">Adultos</span>
-                  <div class="stepper" role="group" aria-labelledby="l-ad">
-                    <button type="button" data-step="ad" data-d="-1" aria-label="Menos um adulto">−</button>
-                    <output id="o-ad" aria-live="polite">1</output>
-                    <button type="button" data-step="ad" data-d="1" aria-label="Mais um adulto">+</button>
+              <label for="f-nome">Nome do convidado</label>
+              <input class="inp" id="f-nome" name="nome" autocomplete="name" placeholder="seu nome aqui" maxlength="120" required>
+            </div>
+            <p class="err" id="e-nome">Escreve seu nome, por favor 🙂</p>
+
+            <div class="field" role="radiogroup" aria-labelledby="l-vai">
+              <span class="flabel" id="l-vai">Você vai à festa?</span>
+              <div class="choice">
+                <input type="radio" id="vai-sim" name="vai" value="sim"><label for="vai-sim">Sim, estarei lá! 💖</label>
+                <input type="radio" id="vai-nao" name="vai" value="nao"><label for="vai-nao">Infelizmente não vou conseguir 🥺</label>
+              </div>
+            </div>
+            <p class="err" id="e-vai">Marca uma das opções acima 💌</p>
+
+            <div id="so-sim">
+              <div class="field">
+                <span class="flabel">Quantas pessoas?</span>
+                <div class="counts">
+                  <div>
+                    <span class="opt" id="l-ad">Adultos</span>
+                    <div class="stepper" role="group" aria-labelledby="l-ad">
+                      <button type="button" data-step="ad" data-d="-1" aria-label="Menos um adulto">−</button>
+                      <output id="o-ad" aria-live="polite">1</output>
+                      <button type="button" data-step="ad" data-d="1" aria-label="Mais um adulto">+</button>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <span class="opt" id="l-cr">Crianças</span>
-                  <div class="stepper" role="group" aria-labelledby="l-cr">
-                    <button type="button" data-step="cr" data-d="-1" aria-label="Menos uma criança">−</button>
-                    <output id="o-cr" aria-live="polite">0</output>
-                    <button type="button" data-step="cr" data-d="1" aria-label="Mais uma criança">+</button>
+                  <div>
+                    <span class="opt" id="l-cr">Crianças</span>
+                    <div class="stepper" role="group" aria-labelledby="l-cr">
+                      <button type="button" data-step="cr" data-d="-1" aria-label="Menos uma criança">−</button>
+                      <output id="o-cr" aria-live="polite">0</output>
+                      <button type="button" data-step="cr" data-d="1" aria-label="Mais uma criança">+</button>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="field">
+                <label for="f-pessoas">Nome das pessoas que irão</label>
+                <textarea class="inp" id="f-pessoas" name="pessoas" maxlength="600" placeholder="Ex.: Ana, João e a pequena Bia"></textarea>
+              </div>
             </div>
+
             <div class="field">
-              <label for="f-pessoas">Nome das pessoas que irão</label>
-              <textarea class="inp" id="f-pessoas" name="pessoas" maxlength="600" placeholder="Ex.: Ana, João e a pequena Bia"></textarea>
+              <label for="f-recado">Deixe um recadinho para a Lua 💌 <span class="opt">(opcional)</span></label>
+              <textarea class="inp" id="f-recado" name="recado" maxlength="1000" placeholder="escreve aqui seu recadinho…"></textarea>
             </div>
-          </div>
 
-          <div class="field">
-            <label for="f-recado">Deixe um recadinho para a Lua 💌 <span class="opt">(opcional)</span></label>
-            <textarea class="inp" id="f-recado" name="recado" maxlength="1000" placeholder="Escreve aqui seu recadinho…"></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button class="btn" type="submit" id="send">CONFIRMAR ✨</button>
+            <button class="dymo big" type="submit" id="send">CONFIRMAR ✨</button>
             <p class="send-msg" id="send-msg" hidden></p>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
 
-    <div class="done" id="done" role="status">
-      <h3 id="done-t">Oba! Presença confirmada! 💖</h3>
-      <p id="done-p">A Lua espera você para comemorar esse dia muito especial! 🌙✨</p>
-      <p class="previa" id="previa" hidden>(prévia do convite: esta resposta não foi salva)</p>
-      <button class="again" type="button" id="again">confirmar outra pessoa ou família</button>
+    <div class="done sh" id="done" role="status">
+      <div class="scrap">
+        <h3 class="ransom s2" id="done-t" data-ransom="Oba! Presença confirmada!" data-seed="41"></h3>
+        <p id="done-p">A Lua espera você para comemorar esse dia muito especial! 🌙✨</p>
+        <p class="previa" id="previa" hidden>(prévia do convite: esta resposta não foi salva)</p>
+        <button class="again" type="button" id="again">confirmar outra pessoa ou família</button>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ======================= RODAPÉ ======================= -->
-<footer class="foot">
-  <div class="wrap" style="position:relative">
-    <span class="stk twinkle" style="width:34px;height:34px;top:-30px;left:calc(var(--gutter-l) + 10px)"><svg><use href="#i-star" style="color:var(--yellow)"/></svg></span>
-    <span class="stk twinkle d2" style="width:22px;height:22px;top:40px;left:calc(var(--gutter-l) + 50px)"><svg><use href="#i-spark" style="color:#fff"/></svg></span>
-    <span class="stk twinkle d3" style="width:40px;height:40px;top:-20px;right:calc(var(--gutter-r) + 20px)"><svg><use href="#i-star" style="color:var(--pink-soft)"/></svg></span>
-    <span class="stk twinkle" style="width:24px;height:24px;top:120px;right:calc(var(--gutter-r) + 4px)"><svg><use href="#i-spark" style="color:var(--yellow)"/></svg></span>
-    <span class="stk twinkle d2" style="width:28px;height:28px;top:170px;left:var(--gutter-l)"><svg><use href="#i-star" style="color:var(--baby)"/></svg></span>
-    <div class="swing" style="width:fit-content;margin:0 auto" data-boing><svg class="bigmoon" aria-hidden="true"><use href="#i-moon"/></svg></div>
-    <p class="msg">Esperamos você para comemorar os 2 aninhos da nossa Lua! 🌙💖✨</p>
-    <p class="dt">26.12.2026 • 16h</p>
+<footer class="sheet foot">
+  <div class="wrap">
+    <span class="stk bob" style="--r:-12deg;width:50px;top:-26px;left:calc(var(--gutter-l) + 4px)"><img src="img/estrela-dourada.png" width="180" height="180" alt="" loading="lazy"></span>
+    <span class="stk sway d2" style="--r:10deg;width:40px;top:40px;right:var(--gutter-r)"><img src="img/estrela-prata.png" width="180" height="180" alt="" loading="lazy"></span>
+    <span class="stk bob d2" style="--r:6deg;width:36px;top:150px;left:var(--gutter-l)"><img src="img/estrela-rosa.png" width="180" height="180" alt="" loading="lazy"></span>
+    <img class="bigmoon sway" src="img/lua-amarela.png" width="360" height="360" alt="" loading="lazy" data-boing>
+    <h2 class="ransom s1" data-ransom="Esperamos você!" data-seed="33"></h2>
+    <span class="msg sh"><span class="scrap">Vem comemorar os 2 aninhos da nossa Lua! 🌙💖✨</span></span>
+    <br><span class="dymo">26.12.2026 • 16h</span>
     <p class="made">feito com amor pela família da Lua</p>
   </div>
 </footer>
@@ -785,8 +605,7 @@ body{background-color:#FFC9E5}
 
 <script>
 /* ===== CONFIGURAÇÃO =====
-   Cole entre as aspas a URL do Apps Script (termina em /exec).
-   Vazio = modo prévia (mostra a animação mas não salva). */
+   RSVP_URL: URL do Apps Script (termina em /exec). Vazio = sem salvar. */
 const RSVP_URL = "https://script.google.com/macros/s/AKfycbwSj7y4QXZ4CSR8Kn3YO9lU1nGv8OQ_LMt_rtIyhOCFSfytkWig633p3y-HaYX4Ft5PfA/exec";
 const PREVIA = false; /* true só na prévia do Claude */
 
@@ -798,6 +617,57 @@ const PREVIA = false; /* true só na prévia do Claude */
     get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
     set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
   };
+
+  /* ----- letras recortadas de revista ----- */
+  const FONTES = [
+    ["'Abril Fatface',Georgia,serif","normal"],
+    ["'Anton',Impact,sans-serif","normal"],
+    ["'Alfa Slab One',Georgia,serif","normal"],
+    ["'Playfair Display',Georgia,serif","italic"],
+    ["'Archivo Black',Arial Black,sans-serif","normal"],
+    ["'DM Serif Display',Georgia,serif","normal"],
+    ["'Special Elite','Courier New',monospace","normal"]
+  ];
+  const CORES = [
+    ["#E8336D","#fff"],["#FFE45C","#1d1d1d"],["#1F5BD8","#FFE45C"],["#FFFDF6","#E8336D"],
+    ["#B9A2F2","#1d1d1d"],["#9FD86B","#1d1d1d"],["#17171c","#FF9AC8"],["#FF9536","#fff"],
+    ["jornal","#1d1d1d"],["#FFFDF6","#1d1d1d"],["#F7C9D9","#1F5BD8"],["#D7263D","#FFE45C"]
+  ];
+  function rnd(seed){ let s = seed >>> 0 || 1; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+  function estiloLetra(span, r){
+    const f = FONTES[Math.floor(r() * FONTES.length)];
+    const c = CORES[Math.floor(r() * CORES.length)];
+    const j = () => (r() * 9).toFixed(1);
+    span.style.fontFamily = f[0];
+    span.style.fontStyle = f[1];
+    span.style.color = c[1];
+    span.style.background = c[0] === "jornal"
+      ? "url(img/grao.png), url(img/jornal.webp) " + Math.floor(r()*80) + "% " + Math.floor(r()*80) + "% / 520px auto"
+      : "url(img/grao.png), " + c[0];
+    span.style.fontSize = (0.86 + r() * 0.28).toFixed(2) + "em";
+    span.style.transform = "rotate(" + (r() * 14 - 7).toFixed(1) + "deg) translateY(" + (r() * 6 - 3).toFixed(1) + "px)";
+    span.style.clipPath = "polygon(" + j() + "% " + j() + "%," + (100 - j()) + "% " + j() + "%," + (100 - j()) + "% " + (100 - j()) + "%," + j() + "% " + (100 - j()) + "%)";
+  }
+  function ransom(el){
+    const txt = el.dataset.ransom; if (!txt) return;
+    const r = rnd(+(el.dataset.seed || 1) * 7919);
+    if (!el.closest("[aria-label]") || el.closest("[aria-label]") === el) el.setAttribute("aria-label", txt);
+    el.textContent = "";
+    txt.split(" ").forEach(word => {
+      const w = document.createElement("span"); w.className = "w"; w.setAttribute("aria-hidden", "true");
+      for (const ch of word) { const l = document.createElement("span"); l.className = "l"; l.textContent = ch; estiloLetra(l, r); w.appendChild(l); }
+      el.appendChild(w);
+    });
+  }
+  document.querySelectorAll("[data-ransom]").forEach(ransom);
+  function numeroRecortado(el, str, seed){
+    if (el.dataset.len != str.length) {
+      el.textContent = ""; const r = rnd(seed);
+      for (let i = 0; i < str.length; i++) { const l = document.createElement("span"); l.className = "l"; estiloLetra(l, r); el.appendChild(l); }
+      el.dataset.len = str.length;
+    }
+    [...el.children].forEach((l, i) => { if (l.textContent !== str[i]) l.textContent = str[i]; });
+  }
 
   /* ----- revelar ao rolar ----- */
   const rvs = document.querySelectorAll(".rv");
@@ -815,30 +685,22 @@ const PREVIA = false; /* true só na prévia do Claude */
     const s = ev.target.closest("[data-boing]");
     if (!s) return;
     s.classList.remove("boing"); void s.offsetWidth; s.classList.add("boing");
-    setTimeout(() => s.classList.remove("boing"), 650);
+    setTimeout(() => s.classList.remove("boing"), 600);
   });
 
   /* ----- contagem regressiva ----- */
   const ALVO = new Date("2026-12-26T16:00:00-03:00").getTime();
   const el = { d:$("#cd-d"), h:$("#cd-h"), m:$("#cd-m"), s:$("#cd-s") };
+  const seeds = { d: 101, h: 202, m: 303, s: 404 };
   const pad = n => String(n).padStart(2, "0");
-  let ult = {};
+  ["d","h","m","s"].forEach(k => el[k].setAttribute("aria-hidden", "true"));
   function tick(){
-    let ms = ALVO - Date.now();
-    if (ms <= 0) {
-      $("#count").style.display = "none"; $("#today").style.display = "block";
-      return;
-    }
+    const ms = ALVO - Date.now();
+    if (ms <= 0) { $("#count").style.display = "none"; $("#today").style.display = "block"; return; }
     const t = Math.floor(ms / 1000);
-    const v = { d: Math.floor(t / 86400), h: Math.floor(t % 86400 / 3600), m: Math.floor(t % 3600 / 60), s: t % 60 };
-    for (const k in v) {
-      const txt = k === "d" ? String(v[k]) : pad(v[k]);
-      if (ult[k] !== txt) {
-        el[k].textContent = txt;
-        if (ult[k] !== undefined && !reduz) { const c = el[k].parentNode; c.classList.remove("tick"); void c.offsetWidth; c.classList.add("tick"); }
-        ult[k] = txt;
-      }
-    }
+    const v = { d: String(Math.floor(t / 86400)), h: pad(Math.floor(t % 86400 / 3600)), m: pad(Math.floor(t % 3600 / 60)), s: pad(t % 60) };
+    for (const k in v) numeroRecortado(el[k], v[k], seeds[k]);
+    $("#count").setAttribute("aria-label", "Faltam " + v.d + " dias, " + v.h + " horas e " + v.m + " minutos");
   }
   tick(); setInterval(tick, 1000);
 
@@ -849,7 +711,7 @@ const PREVIA = false; /* true só na prévia do Claude */
     gb.setAttribute("aria-expanded", String(abrir));
     gw.classList.toggle("open", abrir);
     $("#gb-hint").textContent = abrir ? "toque para fechar" : "clique para abrir";
-    if (abrir) { soltar(gb, 26); setTimeout(() => gw.scrollIntoView({ behavior: reduz ? "auto" : "smooth", block: "nearest" }), 350); }
+    if (abrir) { soltar(gb, 24); setTimeout(() => gw.scrollIntoView({ behavior: reduz ? "auto" : "smooth", block: "nearest" }), 380); }
   });
 
   /* ----- formulário ----- */
@@ -859,25 +721,20 @@ const PREVIA = false; /* true só na prévia do Claude */
 
   ob.addEventListener("click", () => {
     fw.classList.add("open"); ob.setAttribute("aria-expanded", "true"); ob.hidden = true;
-    setTimeout(() => { form.scrollIntoView({ behavior: reduz ? "auto" : "smooth", block: "start" }); $("#f-nome").focus({ preventScroll: true }); }, 380);
+    setTimeout(() => { form.scrollIntoView({ behavior: reduz ? "auto" : "smooth", block: "start" }); $("#f-nome").focus({ preventScroll: true }); }, 400);
   });
-
   form.addEventListener("click", ev => {
-    const b = ev.target.closest("[data-step]");
-    if (!b) return;
-    const k = b.dataset.step, d = +b.dataset.d;
-    const min = k === "ad" ? 0 : 0;
-    cont[k] = Math.max(min, Math.min(20, cont[k] + d));
+    const b = ev.target.closest("[data-step]"); if (!b) return;
+    const k = b.dataset.step;
+    cont[k] = Math.max(0, Math.min(20, cont[k] + (+b.dataset.d)));
     $("#o-" + k).textContent = cont[k];
   });
-
   form.addEventListener("change", ev => {
-    if (ev.target.name === "vai") {
-      $("#so-sim").hidden = ev.target.value === "nao";
-      $("#e-vai").classList.remove("show");
-    }
+    if (ev.target.name === "vai") { $("#so-sim").hidden = ev.target.value === "nao"; $("#e-vai").classList.remove("show"); }
   });
   $("#f-nome").addEventListener("input", () => $("#e-nome").classList.remove("show"));
+
+  function trocaTitulo(txt, seed){ const h = $("#done-t"); h.dataset.ransom = txt; h.dataset.seed = seed; ransom(h); }
 
   form.addEventListener("submit", async ev => {
     ev.preventDefault();
@@ -886,8 +743,7 @@ const PREVIA = false; /* true só na prévia do Claude */
     let ok = true;
     if (!nome) { $("#e-nome").classList.add("show"); ok = false; }
     if (!vaiEl) { $("#e-vai").classList.add("show"); ok = false; }
-    if (!ok) { (nome ? form.querySelector("#vai-sim") : $("#f-nome")).focus(); return; }
-
+    if (!ok) { (nome ? $("#vai-sim") : $("#f-nome")).focus(); return; }
     const vai = vaiEl.value;
     const dados = {
       nome, vai,
@@ -897,16 +753,13 @@ const PREVIA = false; /* true só na prévia do Claude */
       recado: $("#f-recado").value.trim(),
       enviadoEm: new Date().toISOString()
     };
-
     const btn = $("#send"), msg = $("#send-msg");
-    btn.disabled = true; btn.textContent = "enviando… ✨"; msg.hidden = true;
+    btn.disabled = true; btn.textContent = "ENVIANDO…"; msg.hidden = true;
     let previa = false;
     try {
       if (!RSVP_URL && !PREVIA) {
         btn.disabled = false; btn.textContent = "CONFIRMAR ✨";
-        msg.textContent = "As confirmações abrem em instantes! Tenta de novo daqui a pouquinho 💌";
-        msg.hidden = false;
-        return;
+        msg.textContent = "As confirmações abrem em instantes! Tenta de novo daqui a pouquinho 💌"; msg.hidden = false; return;
       }
       if (!RSVP_URL) { previa = true; await new Promise(r => setTimeout(r, 600)); }
       else {
@@ -916,51 +769,38 @@ const PREVIA = false; /* true só na prévia do Claude */
       }
     } catch (e) {
       btn.disabled = false; btn.textContent = "CONFIRMAR ✨";
-      msg.textContent = "Não consegui enviar agora. Confere a internet e toca em confirmar de novo.";
-      msg.hidden = false;
-      return;
+      msg.textContent = "Não consegui enviar agora. Confere a internet e toca em confirmar de novo."; msg.hidden = false; return;
     }
     store.set("lua2-confirmado", "1");
-    if (vai === "nao") {
-      $("#done-t").textContent = "Recebemos sua resposta! 💌";
-      $("#done-p").textContent = "Que pena que não vai dar… A Lua manda um beijinho! 🌙✨";
-    } else {
-      $("#done-t").textContent = "Oba! Presença confirmada! 💖";
-      $("#done-p").textContent = "A Lua espera você para comemorar esse dia muito especial! 🌙✨";
-    }
+    if (vai === "nao") { trocaTitulo("Recebemos sua resposta!", 43); $("#done-p").textContent = "Que pena que não vai dar… A Lua manda um beijinho! 🌙✨"; }
+    else { trocaTitulo("Oba! Presença confirmada!", 41); $("#done-p").textContent = "A Lua espera você para comemorar esse dia muito especial! 🌙✨"; }
     $("#previa").hidden = !previa;
-    fw.classList.remove("open");
-    $("#already").classList.remove("show");
+    fw.classList.remove("open"); $("#already").classList.remove("show");
     const done = $("#done"); done.classList.add("show");
     setTimeout(() => done.scrollIntoView({ behavior: reduz ? "auto" : "smooth", block: "center" }), 650);
-    confete(vai === "sim" ? 160 : 60);
+    confete(vai === "sim" ? 150 : 60);
     btn.disabled = false; btn.textContent = "CONFIRMAR ✨";
   });
-
   $("#again").addEventListener("click", () => {
     form.reset(); cont.ad = 1; cont.cr = 0; $("#o-ad").textContent = "1"; $("#o-cr").textContent = "0";
-    $("#so-sim").hidden = false;
-    $("#done").classList.remove("show");
-    fw.classList.add("open");
+    $("#so-sim").hidden = false; $("#done").classList.remove("show"); fw.classList.add("open");
     setTimeout(() => form.scrollIntoView({ behavior: reduz ? "auto" : "smooth", block: "start" }), 300);
   });
 
-  /* ----- coraçõezinhos ao tocar na foto ----- */
   $("#polaroid").addEventListener("click", () => soltar($("#polaroid"), 14));
 
-  /* ----- confete (canvas leve) ----- */
+  /* ----- confete de papel picado ----- */
   const cv = $("#confetti"), cx = cv.getContext("2d");
-  const cores = ["#FF4FA3","#FFD83D","#2E6BFF","#C9F06B","#B49BFF","#FF9536","#A8DCFF"];
+  const cores = ["#E8336D","#FFE45C","#1F5BD8","#9FD86B","#B9A2F2","#FF9536","#FFFDF6","#D7263D"];
   let parts = [], rodando = false;
   function tam(){ const r = Math.min(window.devicePixelRatio || 1, 2); cv.width = innerWidth * r; cv.height = innerHeight * r; cx.setTransform(r,0,0,r,0,0); }
-  function estrela(x, y, r){ cx.beginPath(); for (let i = 0; i < 10; i++){ const a = Math.PI/5*i - Math.PI/2, rr = i % 2 ? r*.45 : r; cx.lineTo(x + Math.cos(a)*rr, y + Math.sin(a)*rr); } cx.closePath(); cx.fill(); }
-  function coracao(x, y, r){ cx.beginPath(); cx.moveTo(x, y + r*.8); cx.bezierCurveTo(x - r*1.4, y - r*.2, x - r*.6, y - r*1.2, x, y - r*.4); cx.bezierCurveTo(x + r*.6, y - r*1.2, x + r*1.4, y - r*.2, x, y + r*.8); cx.fill(); }
+  function estrela(r){ cx.beginPath(); for (let i = 0; i < 10; i++){ const a = Math.PI/5*i - Math.PI/2, rr = i % 2 ? r*.45 : r; cx.lineTo(Math.cos(a)*rr, Math.sin(a)*rr); } cx.closePath(); cx.fill(); }
   function add(n, ox, oy, espalha){
     for (let i = 0; i < n; i++){
       const a = espalha ? Math.random()*Math.PI*2 : (-Math.PI/2 + (Math.random()-.5)*1.6);
       const v = espalha ? 2 + Math.random()*4 : 7 + Math.random()*8;
-      parts.push({ x: ox ?? Math.random()*innerWidth, y: oy ?? innerHeight + 10, vx: Math.cos(a)*v, vy: Math.sin(a)*v,
-        r: 5 + Math.random()*6, c: cores[i % cores.length], t: Math.floor(Math.random()*3), rot: Math.random()*6, vr: (Math.random()-.5)*.3, vida: 0 });
+      parts.push({ x: ox, y: oy, vx: Math.cos(a)*v, vy: Math.sin(a)*v, w: 6 + Math.random()*8, h: 4 + Math.random()*6,
+        c: cores[i % cores.length], t: Math.random() < .25 ? 1 : 0, rot: Math.random()*6, vr: (Math.random()-.5)*.3, vida: 0 });
     }
     if (!rodando) { rodando = true; tam(); requestAnimationFrame(loop); }
   }
@@ -968,9 +808,10 @@ const PREVIA = false; /* true só na prévia do Claude */
     cx.clearRect(0, 0, innerWidth, innerHeight);
     parts = parts.filter(p => p.vida < 200 && p.y < innerHeight + 40);
     for (const p of parts){
-      p.vida++; p.vy += .18; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
-      cx.save(); cx.translate(p.x, p.y); cx.rotate(p.rot); cx.fillStyle = p.c; cx.globalAlpha = Math.max(0, 1 - p.vida/200);
-      if (p.t === 0) estrela(0, 0, p.r); else if (p.t === 1) coracao(0, 0, p.r*.9); else { cx.beginPath(); cx.arc(0, 0, p.r*.55, 0, 7); cx.fill(); }
+      p.vida++; p.vy += .18; p.vx *= .985; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      cx.save(); cx.translate(p.x, p.y); cx.rotate(p.rot); cx.scale(1, Math.cos(p.vida * .15 + p.rot));
+      cx.fillStyle = p.c; cx.globalAlpha = Math.max(0, 1 - p.vida/200);
+      if (p.t) estrela(p.w * .8); else cx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
       cx.restore();
     }
     if (parts.length) requestAnimationFrame(loop); else { rodando = false; cx.clearRect(0, 0, innerWidth, innerHeight); }
